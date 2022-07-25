@@ -13,10 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
             x: canvas.width / 2 - 75,
             y: canvas.height - 150
         },
-        velocity: {
-            x: 0,
-            y: 0
-        },
+        velocity: {x: 0, y: 0},
         ctx: ctx
     });
 
@@ -36,13 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         player.velocity.x = 0;
         if (keys.a.pressed && player.lastKey === 'a') {
-            player.velocity.x = -1;
+            player.velocity.x = -2;
         } else if (keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
-            player.velocity.x = -1;
+            player.velocity.x = -2;
         } else if (keys.d.pressed && player.lastKey === 'd') {
-            player.velocity.x = 1;
+            player.velocity.x = 2;
         } else if (keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
-            player.velocity.x = 1;
+            player.velocity.x = 2;
         }
     }
     
@@ -72,10 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 keys.ArrowRight.pressed = true;
                 player.lastKey = 'ArrowRight';
                 break;
-            case 'ArrowUp':
-                keys.ArrowUp.pressed = true;
-                player.lastKey = 'ArrowUp';
-                break;
         }
     })
 
@@ -95,9 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case 'ArrowRight':
                 keys.ArrowRight.pressed = false;
-                break;
-            case 'ArrowUp':
-                keys.ArrowUp.pressed = false;
                 break;
         }
     })
