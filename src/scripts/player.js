@@ -65,6 +65,7 @@ export default class Player {
     constructor({position, velocity, ctx}) {
         this.position = position;
         this.velocity = velocity;
+        this.lastKey = "";
         this.ctx = ctx;
     }
 

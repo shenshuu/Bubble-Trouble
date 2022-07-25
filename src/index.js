@@ -1,5 +1,6 @@
 import Player from './scripts/player';
 document.addEventListener("DOMContentLoaded", () => {
+    
     const canvas = document.querySelector('.game-canvas');
     const sizes = {width: window.innerWidth, height: window.innerHeight};
     canvas.width = sizes.width;
@@ -21,10 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const keys = {
         a: {pressed: false},
-        d: {pressed: false} 
+        d: {pressed: false},
+        w: {pressed: false},
+        ArrowLeft: {pressed: false},
+        ArrowRight: {pressed: false},
+        ArrowUp: {pressed: false}
     }
-
-    let lastKey = "";
 
     function animate() {
         window.requestAnimationFrame(animate);
@@ -32,9 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
         player.update(canvas);
 
         player.velocity.x = 0;
-        if (keys.a.pressed) {
+        if (keys.a.pressed && player.lastKey === 'a') {
             player.velocity.x = -1;
-        } else if (keys.d.pressed) {
+        } else if (keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
+            player.velocity.x = -1;
+        } else if (keys.d.pressed && player.lastKey === 'd') {
+            player.velocity.x = 1;
+        } else if (keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
             player.velocity.x = 1;
         }
     }
@@ -47,11 +54,27 @@ document.addEventListener("DOMContentLoaded", () => {
         switch(event.key) {
             case 'd': 
                 keys.d.pressed = true;
-                lastKey = 'd';
+                player.lastKey = 'd';
                 break;
             case 'a':
                 keys.a.pressed = true;
-                lastKey = 'a';
+                player.lastKey = 'a';
+                break;
+            case 'w':
+                keys.w.pressed = true;
+                player.lastKey = 'w';
+                break;
+            case 'ArrowLeft':
+                keys.ArrowLeft.pressed = true;
+                player.lastKey = 'ArrowLeft';
+                break;
+            case 'ArrowRight':
+                keys.ArrowRight.pressed = true;
+                player.lastKey = 'ArrowRight';
+                break;
+            case 'ArrowUp':
+                keys.ArrowUp.pressed = true;
+                player.lastKey = 'ArrowUp';
                 break;
         }
     })
@@ -63,6 +86,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case 'd':
                 keys.d.pressed = false;
+                break;
+            case 'w':
+                keys.w.pressed = false;
+                break;
+            case 'ArrowLeft':
+                keys.ArrowLeft.pressed = false;
+                break;
+            case 'ArrowRight':
+                keys.ArrowRight.pressed = false;
+                break;
+            case 'ArrowUp':
+                keys.ArrowUp.pressed = false;
                 break;
         }
     })
