@@ -4,8 +4,8 @@ export default class Player {
         this.velocity = velocity;
         this.attackBox = {
             position: this.position,
-            width: 200,
-            height: window.innerHeight
+            width: 10,
+            height: -window.innerHeight,
         }
         this.lastKey = "";
         this.ctx = ctx;
@@ -14,7 +14,7 @@ export default class Player {
     draw() {
         this.ctx.fillStyle = 'green';
         this.ctx.fillRect(this.position.x, this.position.y, 50, 150);
-        
+        this.ctx.fillStyle = 'blue';
         this.ctx.fillRect(
             this.attackBox.position.x, 
             this.attackBox.position.y,
