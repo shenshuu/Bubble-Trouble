@@ -1,4 +1,5 @@
 import Player from './scripts/player';
+import Bubble from './scripts/bubble';
 document.addEventListener("DOMContentLoaded", () => {
     
     const canvas = document.querySelector('.game-canvas');
@@ -17,6 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx: ctx
     });
 
+    let bubble = new Bubble({
+        position: {
+            x: 200,
+            y: 200, 
+        },
+        velocity: {
+            x: 0, 
+            y: 0,
+        },
+        radius: 30,
+        ctx: ctx,
+    });
+
     const keys = {
         a: {pressed: false},
         d: {pressed: false},
@@ -29,7 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        player.update(canvas);
+        player.update();
+        bubble.draw();
 
         player.velocity.x = 0;
         if (keys.a.pressed && player.lastKey === 'a') {

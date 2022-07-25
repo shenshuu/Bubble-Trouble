@@ -7,13 +7,18 @@ export default class Player {
             width: 10,
             height: -window.innerHeight,
         }
+        this.height = 100;
+        this.width = 50;
         this.lastKey = "";
         this.ctx = ctx;
     }
 
     draw() {
         this.ctx.fillStyle = 'green';
-        this.ctx.fillRect(this.position.x, this.position.y, 50, 150);
+        this.ctx.fillRect(
+            this.position.x, 
+            this.position.y, 
+            this.width, this.height);
         this.ctx.fillStyle = 'blue';
         this.ctx.fillRect(
             this.attackBox.position.x, 
