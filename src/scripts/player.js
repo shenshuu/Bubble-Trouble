@@ -7,11 +7,15 @@ export default class Player {
         this.position = position;
         this.velocity = velocity;
         this.isAttacking = false;
-        this.attackBox = {
-            position: this.position,
-            width: 10,
-            height: -window.innerHeight
-        }
+        // this.attackBox = {
+        //     position: this.position,
+        //     width: 10,
+        //     height: -window.innerHeight
+        // }
+        this.attackBox = new Missle({
+            position: position,
+            ctx: ctx
+        })
         this.height = 100;
         this.width = 50;
         this.lastKey = "";
@@ -45,6 +49,12 @@ export default class Player {
         let that = this;
         this.isAttacking = true;
         setTimeout(() => {
+            const interval = setInterval(() => {
+                that.attackBox.update();
+                if (that.attackBox.position.y <= 0) {
+                    clearInterval(interval);
+                }
+            }, 40);
             that.isAttacking = false;
             // that.growAttackBox();
         }, 50);

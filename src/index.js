@@ -9,7 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = sizes.width;
     canvas.height = sizes.height;
     const ctx = canvas.getContext('2d');
-
+    const background = document.querySelector('#background');
+   
+    background.style.width = sizes.width;
+    background.style.height = sizes.height;
     /* 
     // FIGURE OUT WHAT'S WRONG WITH PATH
     const background = new Sprite({
@@ -77,7 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
-
+        // player.attackBox.update();
+        
         for (let bubble of bubbles) {
             bubble.update();
             

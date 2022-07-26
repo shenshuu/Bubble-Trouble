@@ -1,9 +1,8 @@
 export default class Missle {
-    constructor({position, dimensions, ctx}) {
-        this.dimensions = dimensions;
+    constructor({position, ctx}) {
         this.position = position;
-        this.height = dimensions.height;
-        this.width = dimensions.width;
+        this.height = 0
+        this.width = 5;
         this.ctx = ctx;
     }
 
