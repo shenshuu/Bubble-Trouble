@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         for (let bubble of bubbles) {
             bubble.update();
+            
             // test missile collision
             missile.collided(bubble);
 
