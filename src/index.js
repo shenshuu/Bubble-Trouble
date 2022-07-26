@@ -1,6 +1,7 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
 import Sprite from './scripts/sprite';
+import Missle from './scripts/missle';
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -62,20 +63,32 @@ document.addEventListener("DOMContentLoaded", () => {
         ArrowUp: {pressed: false}
     }
 
+    let missle = new Missle({
+        position: {
+            x: 200,
+            y: groundLevel
+        },
+        ctx: ctx
+    })
+
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
+        missle.update();
         // player.attackBox.update();
         
         for (let bubble of bubbles) {
             bubble.update();
+            missle.collided(bubble);
             
             if (player.killedBy(bubble)) {
                 console.log('dead');
             }
 
-            if (player.collided(bubble)) {
+            if (player.missle && player.missle.collided(bubble)) {
+                // debugger;
+                // player.missle.update();
                 if (bubble.children.length === 0) {
                     bubble.split();
                     for (let child of bubble.children) {

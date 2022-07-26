@@ -7,10 +7,7 @@ export default class Player {
         this.position = position;
         this.velocity = velocity;
         this.isAttacking = false;
-        this.attackBox = new Missle({
-            position: position,
-            ctx: ctx
-        })
+        this.missle = null;
         this.height = 100;
         this.width = 50;
         this.lastKey = "";
@@ -24,13 +21,6 @@ export default class Player {
             this.position.x, 
             this.position.y, 
             this.width, this.height);
-        this.ctx.fillStyle = 'blue';
-        this.ctx.fillRect(
-            this.attackBox.position.x, 
-            this.attackBox.position.y,
-            this.attackBox.width,
-            this.attackBox.height
-            )
     }
 
     update() {
@@ -41,27 +31,12 @@ export default class Player {
     }
 
     attack() {
-        let that = this;
         this.isAttacking = true;
-        setTimeout(() => {
-            const interval = setInterval(() => {
-                that.attackBox.update();
-                if (that.attackBox.position.y <= 0) {
-                    clearInterval(interval);
-                }
-            }, 40);
-            that.isAttacking = false
-        }, 50);
-    }
-
-    // refactor this method to take y-coordinates into account 
-    collided(ball) {
-        if (ball.position.x - ball.radius <= this.attackBox.position.x + this.attackBox.width &&
-            this.attackBox.position.x <= ball.position.x + ball.radius && this.isAttacking) {
-            ball.collided = true;
-            return true;
-        } else {
-            return false;
+        if (this.isAttacking) {
+            this.missle = new Missle({
+                position: this.position,
+                ctx: this.ctx
+            })
         }
     }
 
