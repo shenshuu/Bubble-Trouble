@@ -32,7 +32,6 @@ export default class Missle {
             this.position.x <= ball.position.x + ball.radius &&
             ball.position.y + ball.radius <= this.position.y + this.height &&
             this.position.y <= ball.position.y + ball.radius) {
-            console.log('missle hit');
             this.hit = true;
             return true;
         } else {

@@ -1,4 +1,3 @@
-import { setInterval } from "core-js";
 import Bubble from "./bubble";
 import Missle from "./missle";
 
@@ -6,12 +5,11 @@ export default class Player {
     constructor({position, velocity, ctx}) {
         this.position = position;
         this.velocity = velocity;
-        this.isAttacking = false;
         this.missle = null;
         this.height = 100;
         this.width = 50;
         this.lastKey = "";
-        this.lives = 3;
+        this.numLives = 3;
         this.ctx = ctx;
     }
 
@@ -30,11 +28,13 @@ export default class Player {
         this.position.x += this.velocity.x;
     }
 
-    attack() {
-        this.isAttacking = true;
-        if (this.isAttacking) {
+    attack(x, y) {
+        if (!this.missle) {
             this.missle = new Missle({
-                position: this.position,
+                position: {
+                    x: x,
+                    y: y 
+                },
                 ctx: this.ctx
             })
         }
@@ -45,10 +45,10 @@ export default class Player {
             this.position.x <= ball.position.x + ball.radius &&
             ball.position.y + ball.radius <= this.position.y + this.height &&
             this.position.y <= ball.position.y + ball.radius) {
-            this.lives -= 1;
-            return true;
-            // make a reset function and call it over here 
-        } 
+            return true; 
+        } else {
+            return false;
+        }
     }
 }
 

@@ -76,8 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
         missle.update();
-        // player.attackBox.update();
-        
+
+        if (player.missle) player.missle.update();
+
         for (let bubble of bubbles) {
             bubble.update();
             missle.collided(bubble);
@@ -88,13 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (player.killedBy(bubble)) {
-                console.log('dead');
+                player.numLives -= 1;
             }
 
             if (player.missle && player.missle.collided(bubble)) {
-                // debugger;
-                player.missle.update();
-                // player.missle.update();
                 if (bubble.children.length === 0) {
                     bubble.split();
                     for (let child of bubble.children) {
@@ -133,7 +131,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case 'w':
                 keys.w.pressed = true;
-                player.attack();
+                player.attack({
+                    x: player.position.x,
+                    y: player.position.y
+                });
                 break;
             case 'ArrowLeft':
                 keys.ArrowLeft.pressed = true;
@@ -145,7 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case 'ArrowUp':
                 keys.ArrowUp.pressed = true;
-                player.attack();
+                player.attack({
+                    x: player.position.x,
+                    y: player.position.y
+                });
                 break;
         }
     })
