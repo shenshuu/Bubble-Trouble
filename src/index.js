@@ -8,15 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const sizes = {width: window.innerWidth, height: window.innerHeight};
     canvas.width = sizes.width;
     canvas.height = sizes.height;
+    const groundLevel = 475;
     const ctx = canvas.getContext('2d');
+
 
     let player = new Player({
         position: {
-            x: canvas.width / 2 - 75,
-            y: canvas.height - 150
+            x: 100,
+            y: groundLevel
         },
         velocity: {
-            x: 10, 
+            x: 50, 
             y: -10
         },
         ctx: ctx
