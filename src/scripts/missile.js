@@ -9,21 +9,26 @@ export default class Missile {
     }
 
     draw() {
+        // debugger;
         this.ctx.fillStyle = 'yellow';
         this.ctx.fillRect(
             this.position.x,
             this.position.y,
             this.width,
             this.height);
+        // debugger;
     }
 
     update() {
+        // debugger;
         this.draw();
         if (this.position.y <= 0 || this.hit) {
             this.reset();
         }
+        // debugger;
         this.height += this.velocity;
         this.position.y -= this.velocity;
+        // debugger;
     }
 
     collided(ball) {

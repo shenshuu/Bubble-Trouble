@@ -29,6 +29,7 @@ export default class Player {
     }
 
     attack(x_, y_) {
+        // debugger;
         if (!this.missile) {
             this.missile = new Missile({
                 position: {
@@ -38,6 +39,7 @@ export default class Player {
                 ctx: this.ctx
             })
         }
+        // debugger;
     }
 
     killedBy(ball) {

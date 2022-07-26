@@ -78,14 +78,15 @@ document.addEventListener("DOMContentLoaded", () => {
         missile.update();
 
         if (player.missile) {
+            // debugger;
             player.missile.update();
         }
 
         for (let bubble of bubbles) {
             bubble.update();
-            
+
             // test missile collision
-            missile.collided(bubble);
+            // missile.collided(bubble);
 
             if (player.missile && (player.missile.collided(bubble) ||
                 player.missile.y <= 0)) {
@@ -134,10 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case 'w':
                 keys.w.pressed = true;
-                player.attack({
-                    x: player.position.x,
-                    y: player.position.y
-                });
+                // debugger;
+                player.attack(
+                    player.position.x,
+                    player.position.y
+                );
                 break;
             case 'ArrowLeft':
                 keys.ArrowLeft.pressed = true;
