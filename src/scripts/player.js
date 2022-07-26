@@ -8,11 +8,12 @@ export default class Player {
         this.attackBox = {
             position: this.position,
             width: 10,
-            height: -window.innerHeight,
+            height: 0,
         }
         this.height = 100;
         this.width = 50;
         this.lastKey = "";
+        this.lives = 3;
         this.ctx = ctx;
     }
 
@@ -50,18 +51,20 @@ export default class Player {
             this.attackBox.position.x <= ball.position.x + ball.radius && this.isAttacking) {
             ball.collided = true;
             return true;
+        } else {
+            return false;
         }
     }
 
-    die(ball) {
-        // if (ball.position.x - ball.radius <= this.position.x + this.width &&
-        //     this.position.x <= ball.position.x + ball.radius) {
-        //     console.log('ouch');
-        // } 
-        if (ball.position.y + ball.radius <= this.position.y + this.height) {
-            console.log('ouch');
-        }
-
+    killedBy(ball) {
+        if (ball.position.x - ball.radius <= this.position.x + this.width &&
+            this.position.x <= ball.position.x + ball.radius &&
+            ball.position.y + ball.radius <= this.position.y + this.height &&
+            this.position.y <= ball.position.y + ball.radius) {
+            this.lives -= 1;
+            return true;
+            // make a reset function and call it over here 
+        } 
     }
 }
 

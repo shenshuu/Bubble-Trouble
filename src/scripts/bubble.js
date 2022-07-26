@@ -22,10 +22,8 @@ export default class Bubble {
     }
 
     update() {
-        
-        this.draw();
         if (this.position.x + this.radius >= window.innerWidth ||
-            this.position.x + this.radius <= 0) {
+            this.position.x - this.radius <= 0) {
             this.velocity.x = -this.velocity.x;
         }
         if (this.position.y + this.radius >= window.innerHeight) {
@@ -33,6 +31,7 @@ export default class Bubble {
         } else {
             this.velocity.y += this.gravity;
         }
+        this.draw();
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
     }

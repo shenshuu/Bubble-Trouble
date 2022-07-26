@@ -22,14 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     console.log(background);
     */
+
     let player = new Player({
         position: {
             x: canvas.width / 2 - 75,
             y: canvas.height - 150
         },
         velocity: {
-            x: 2, 
-            y: -2
+            x: 10, 
+            y: -10
         },
         ctx: ctx
     });
@@ -60,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx: ctx,
     });
 
+
     let bubbles = [bubble1, bubble2];
 
     const keys = {
@@ -78,7 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         for (let bubble of bubbles) {
             bubble.update();
-            // player.die(bubble);
+            
+            if (player.killedBy(bubble)) {
+                console.log('dead');
+            }
+
             if (player.collided(bubble)) {
                 if (bubble.children.length === 0) {
                     bubble.split();
@@ -90,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
-
+   
         player.velocity.x = 0;
         if (keys.a.pressed && player.lastKey === 'a') {
             player.velocity.x = -2;
