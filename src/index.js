@@ -65,6 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (player.collided(bubble)) {
                 if (bubble.children.length === 0) {
                     bubble.split();
+                    for (let child of bubble.children) {
+                        bubbles.push(child);
+                    }
                     console.log(bubble);
                 }
             }

@@ -42,7 +42,7 @@ export default class Bubble {
     }
 
     split() {
-        if (this.collided) {
+        if (this.collided && this.radius >= 10) {
             let b1 = new Bubble({
                 position: {
                     x: this.position.x - 10,
