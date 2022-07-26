@@ -45,8 +45,8 @@ export default class Bubble {
         if (this.collided && this.radius >= 10) {
             let b1 = new Bubble({
                 position: {
-                    x: this.position.x - 10,
-                    y: this.position.y
+                    x: this.position.x - 25,
+                    y: this.position.y + 25
                 },
                 velocity: {
                     x: this.velocity.x - 0.25,
@@ -57,8 +57,8 @@ export default class Bubble {
             })
             let b2 = new Bubble({
                 position: {
-                    x: this.position.x + 10,
-                    y: this.position.y
+                    x: this.position.x + 25,
+                    y: this.position.y + 25
                 },
                 velocity: {
                     x: -(this.velocity.x + 0.25),

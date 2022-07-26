@@ -42,7 +42,7 @@ export default class Player {
         this.isAttacking = true;
         setTimeout(() => {
             this.isAttacking = false;
-        }, 500);
+        }, 50);
     }
 
     collided(ball) {
@@ -51,6 +51,17 @@ export default class Player {
             ball.collided = true;
             return true;
         }
+    }
+
+    die(ball) {
+        // if (ball.position.x - ball.radius <= this.position.x + this.width &&
+        //     this.position.x <= ball.position.x + ball.radius) {
+        //     console.log('ouch');
+        // } 
+        if (ball.position.y + ball.radius <= this.position.y + this.height) {
+            console.log('ouch');
+        }
+
     }
 }
 

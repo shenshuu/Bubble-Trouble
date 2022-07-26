@@ -1,5 +1,7 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
+import Sprite from './scripts/sprite';
+
 document.addEventListener("DOMContentLoaded", () => {
     
     const canvas = document.querySelector('.game-canvas');
@@ -8,13 +10,22 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = sizes.height;
     const ctx = canvas.getContext('2d');
     
+    const background = new Sprite({
+        position: {x: 0, y: 0},
+        imageSrc: '../img/bulkhead-wall-files/bulkhead-wallsx1.png',
+        canvas: canvas
+    })
+    console.log(background);
 
     let player = new Player({
         position: {
             x: canvas.width / 2 - 75,
             y: canvas.height - 150
         },
-        velocity: {x: 2, y: -2},
+        velocity: {
+            x: 2, 
+            y: -2
+        },
         ctx: ctx
     });
 
@@ -62,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         for (let bubble of bubbles) {
             bubble.update();
+            // player.die(bubble);
             if (player.collided(bubble)) {
                 if (bubble.children.length === 0) {
                     bubble.split();
