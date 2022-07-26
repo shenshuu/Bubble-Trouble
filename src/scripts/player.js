@@ -34,5 +34,12 @@ export default class Player {
             this.velocity.x = 0;
         this.position.x += this.velocity.x;
     }
+
+    collided(ball) {
+        if (ball.position.x - ball.radius <= this.attackBox.position.x + this.attackBox.width &&
+            this.attackBox.position.x <= ball.position.x + ball.radius) {
+            return true;
+        }
+    }
 }
 

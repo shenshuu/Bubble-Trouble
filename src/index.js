@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let bubble = new Bubble({
         position: {
-            x: 200,
+            x: 50,
             y: 200, 
         },
         velocity: {
@@ -46,6 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
         player.update();
         bubble.update();
 
+        if (player.collided(bubble)) {
+            console.log('hit');
+        }
         player.velocity.x = 0;
         if (keys.a.pressed && player.lastKey === 'a') {
             player.velocity.x = -2;
@@ -62,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     window.addEventListener('keydown', (event) => {
-        console.log(event.key);
         switch(event.key) {
             case 'd': 
                 keys.d.pressed = true;
