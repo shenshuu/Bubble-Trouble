@@ -4,7 +4,6 @@ export default class Bubble {
         this.velocity = velocity;
         this.gravity = 0.5;
         this.radius = radius;
-        this.collided = false;
         this.children = [];
         this.ctx = ctx;
     }
@@ -41,7 +40,7 @@ export default class Bubble {
     }
 
     split() {
-        if (this.collided && this.radius >= 10) {
+        if (this.radius >= 10) {
             let b1 = new Bubble({
                 position: {
                     x: this.position.x - 25,

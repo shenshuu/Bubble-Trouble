@@ -1,11 +1,11 @@
 import Bubble from "./bubble";
-import Missle from "./missle";
+import Missile from "./missile";
 
 export default class Player {
     constructor({position, velocity, ctx}) {
         this.position = position;
         this.velocity = velocity;
-        this.missle = null;
+        this.missile = null;
         this.height = 100;
         this.width = 50;
         this.lastKey = "";
@@ -28,12 +28,12 @@ export default class Player {
         this.position.x += this.velocity.x;
     }
 
-    attack(x, y) {
-        if (!this.missle) {
-            this.missle = new Missle({
+    attack(x_, y_) {
+        if (!this.missile) {
+            this.missile = new Missile({
                 position: {
-                    x: x,
-                    y: y 
+                    x: x_,
+                    y: y_ 
                 },
                 ctx: this.ctx
             })

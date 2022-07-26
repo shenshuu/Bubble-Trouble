@@ -1,4 +1,4 @@
-export default class Missle {
+export default class Missile {
     constructor({position, ctx}) {
         this.position = position;
         this.velocity = 7;

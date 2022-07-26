@@ -1,7 +1,7 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
 import Sprite from './scripts/sprite';
-import Missle from './scripts/missle';
+import Missile from './scripts/missile';
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ArrowUp: {pressed: false}
     }
 
-    let missle = new Missle({
+    let missile = new Missile({
         position: {
             x: 200,
             y: groundLevel
@@ -75,31 +75,33 @@ document.addEventListener("DOMContentLoaded", () => {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
-        missle.update();
+        missile.update();
 
-        if (player.missle) player.missle.update();
+        if (player.missile) {
+            player.missile.update();
+        }
 
         for (let bubble of bubbles) {
             bubble.update();
-            missle.collided(bubble);
+            // test missile collision
+            missile.collided(bubble);
 
-            if (player.missle && (player.missle.collided(bubble) ||
-                player.missle.y <= 0)) {
-                player.missle = null;
+            if (player.missile && (player.missile.collided(bubble) ||
+                player.missile.y <= 0)) {
+                player.missile = null;
             }
 
             if (player.killedBy(bubble)) {
                 player.numLives -= 1;
             }
 
-            if (player.missle && player.missle.collided(bubble)) {
+            if (player.missile && player.missile.collided(bubble) || missile.collided(bubble)) {
                 if (bubble.children.length === 0) {
                     bubble.split();
                     for (let child of bubble.children) {
                         bubbles.push(child);
                     }
                     bubbles = bubbles.filter((bub) => bub !== bubble);
-                    console.log(bubble);
                 }
             }
         }
