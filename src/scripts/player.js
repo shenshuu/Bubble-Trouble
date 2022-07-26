@@ -1,4 +1,6 @@
+import { setInterval } from "core-js";
 import Bubble from "./bubble";
+import Missle from "./missle";
 
 export default class Player {
     constructor({position, velocity, ctx}) {
@@ -8,7 +10,7 @@ export default class Player {
         this.attackBox = {
             position: this.position,
             width: 10,
-            height: 0,
+            height: -window.innerHeight
         }
         this.height = 100;
         this.width = 50;
@@ -40,12 +42,28 @@ export default class Player {
     }
 
     attack() {
+        let that = this;
         this.isAttacking = true;
         setTimeout(() => {
-            this.isAttacking = false;
+            that.isAttacking = false;
+            // that.growAttackBox();
         }, 50);
     }
 
+    // growAttackBox() {
+    //     let that = this;
+    //     const interval = setInterval(() => {
+    //         // that.attackBox.y -= 15;
+    //         that.attackBox.height -= 15;
+    //         if (that.attackBox.position.y <= 0) {
+    //             that.attackBox.height = 0;
+    //             clearInterval(interval);
+    //             console.log(that.attackBox);
+    //         } 
+    //     }, 40);
+    // }
+
+    // refactor this method to take y-coordinates into account 
     collided(ball) {
         if (ball.position.x - ball.radius <= this.attackBox.position.x + this.attackBox.width &&
             this.attackBox.position.x <= ball.position.x + ball.radius && this.isAttacking) {
