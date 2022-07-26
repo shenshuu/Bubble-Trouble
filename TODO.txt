@@ -1,0 +1,6 @@
+Add split function for bubble 
+Fix attack box positioning 
+Add lifebar 
+Add timer 
+Add background 
+Add sprite 
