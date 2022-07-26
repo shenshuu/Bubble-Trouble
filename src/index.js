@@ -75,29 +75,24 @@ document.addEventListener("DOMContentLoaded", () => {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
-        missile.update();
 
-        if (player.missile) {
-            // debugger;
+        if (player.missile && !player.missile.reseted) {
             player.missile.update();
+        }
+
+         if (player.missile && player.missile.position.y <= 100) {
+            player.missile = null;
         }
 
         for (let bubble of bubbles) {
             bubble.update();
 
-            // test missile collision
-            // missile.collided(bubble);
-
-            if (player.missile && (player.missile.collided(bubble) ||
-                player.missile.y <= 0)) {
-                player.missile = null;
-            }
-
             if (player.killedBy(bubble)) {
                 player.numLives -= 1;
             }
 
-            if (player.missile && player.missile.collided(bubble) || missile.collided(bubble)) {
+            if (player.missile && player.missile.collided(bubble)) {
+                player.missile = null;
                 if (bubble.children.length === 0) {
                     bubble.split();
                     for (let child of bubble.children) {
@@ -151,10 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case 'ArrowUp':
                 keys.ArrowUp.pressed = true;
-                player.attack({
-                    x: player.position.x,
-                    y: player.position.y
-                });
+                player.attack(
+                    player.position.x,
+                    player.position.y
+                );
                 break;
         }
     })

@@ -3,6 +3,7 @@ export default class Missile {
         this.position = position;
         this.velocity = 7;
         this.hit = false;
+        this.reseted = false;
         this.height = 10;
         this.width = 10;
         this.ctx = ctx;
@@ -19,10 +20,13 @@ export default class Missile {
         // debugger;
     }
 
+    
+
     update() {
         // debugger;
         this.draw();
-        if (this.position.y <= 0 || this.hit) {
+        if (this.position.y <= 100 || this.hit) {
+            this.reseted = true;
             this.reset();
         }
         // debugger;
@@ -30,7 +34,7 @@ export default class Missile {
         this.position.y -= this.velocity;
         // debugger;
     }
-
+    
     collided(ball) {
         if (ball.position.x - ball.radius <= this.position.x + this.width &&
             this.position.x <= ball.position.x + ball.radius &&
