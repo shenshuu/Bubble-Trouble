@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     for (let child of bubble.children) {
                         bubbles.push(child);
                     }
+                    bubbles = bubbles.filter((bub) => bub !== bubble);
                     console.log(bubble);
                 }
             }
