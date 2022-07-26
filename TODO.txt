@@ -1,4 +1,4 @@
-Add split function for bubble 
+Fix timer for attack function 
 Fix attack box positioning 
 Add lifebar 
 Add timer 
