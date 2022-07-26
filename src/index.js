@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx: ctx
     });
 
-    let bubble = new Bubble({
+    let bubble1 = new Bubble({
         position: {
             x: 50,
             y: 200, 
@@ -30,6 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
         radius: 30,
         ctx: ctx,
     });
+
+    let bubble2 = new Bubble({
+        position: {
+            x: canvas.width - 50,
+            y: 200, 
+        },
+        velocity: {
+            x: -3, 
+            y: 5,
+        },
+        radius: 30,
+        ctx: ctx,
+    });
+
+    let bubbles = [bubble1, bubble2];
 
     const keys = {
         a: {pressed: false},
@@ -44,11 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
-        bubble.update();
 
-        if (player.collided(bubble)) {
-            console.log('hit');
+        for (let bubble of bubbles) {
+            bubble.update();
+            if (player.collided(bubble)) {
+                if (bubble.children.length === 0) {
+                    bubble.split();
+                    console.log(bubble);
+                }
+            }
         }
+
         player.velocity.x = 0;
         if (keys.a.pressed && player.lastKey === 'a') {
             player.velocity.x = -2;

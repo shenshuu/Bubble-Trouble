@@ -4,6 +4,8 @@ export default class Bubble {
         this.velocity = velocity;
         this.gravity = 0.5;
         this.radius = radius;
+        this.collided = false;
+        this.children = [];
         this.ctx = ctx;
     }
 
@@ -35,7 +37,37 @@ export default class Bubble {
         this.position.x += this.velocity.x;
     }
 
-    collisionDetected(player) {
-        
+    collided(player) {
+        return player.collided(this);
+    }
+
+    split() {
+        if (this.collided) {
+            let b1 = new Bubble({
+                position: {
+                    x: this.position.x - 10,
+                    y: this.position.y
+                },
+                velocity: {
+                    x: this.velocity.x - 0.25,
+                    y: this.velocity.y - 0.25
+                },
+                radius: this.radius / 2,
+                ctx: this.ctx
+            })
+            let b2 = new Bubble({
+                position: {
+                    x: this.position.x + 10,
+                    y: this.position.y
+                },
+                velocity: {
+                    x: -(this.velocity.x + 0.25),
+                    y: this.velocity.y - 0.25
+                },
+                radius: this.radius / 2,
+                ctx: this.ctx
+            })
+            this.children.push(...[b1, b2]);
+        }
     }
 }

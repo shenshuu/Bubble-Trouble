@@ -1,3 +1,5 @@
+import Bubble from "./bubble";
+
 export default class Player {
     constructor({position, velocity, ctx}) {
         this.position = position;
@@ -46,6 +48,7 @@ export default class Player {
     collided(ball) {
         if (ball.position.x - ball.radius <= this.attackBox.position.x + this.attackBox.width &&
             this.attackBox.position.x <= ball.position.x + ball.radius && this.isAttacking) {
+            ball.collided = true;
             return true;
         }
     }
