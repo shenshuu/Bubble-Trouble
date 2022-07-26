@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case 'w':
                 keys.w.pressed = true;
-                player.lastKey = 'w';
+                player.attack();
                 break;
             case 'ArrowLeft':
                 keys.ArrowLeft.pressed = true;
@@ -85,6 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
             case 'ArrowRight':
                 keys.ArrowRight.pressed = true;
                 player.lastKey = 'ArrowRight';
+                break;
+            case 'ArrowUp':
+                keys.ArrowUp.pressed = true;
+                player.attack();
                 break;
         }
     })
@@ -105,6 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case 'ArrowRight':
                 keys.ArrowRight.pressed = false;
+                break;
+            case 'ArrowUp':
+                keys.ArrowUp.pressed = false;
                 break;
         }
     })

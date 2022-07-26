@@ -2,6 +2,7 @@ export default class Player {
     constructor({position, velocity, ctx}) {
         this.position = position;
         this.velocity = velocity;
+        this.isAttacking = false;
         this.attackBox = {
             position: this.position,
             width: 10,
@@ -35,9 +36,16 @@ export default class Player {
         this.position.x += this.velocity.x;
     }
 
+    attack() {
+        this.isAttacking = true;
+        setTimeout(() => {
+            this.isAttacking = false;
+        }, 500);
+    }
+
     collided(ball) {
         if (ball.position.x - ball.radius <= this.attackBox.position.x + this.attackBox.width &&
-            this.attackBox.position.x <= ball.position.x + ball.radius) {
+            this.attackBox.position.x <= ball.position.x + ball.radius && this.isAttacking) {
             return true;
         }
     }
