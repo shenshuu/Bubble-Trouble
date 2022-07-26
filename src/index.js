@@ -9,14 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = sizes.width;
     canvas.height = sizes.height;
     const ctx = canvas.getContext('2d');
-    
+
+    /* 
+    // FIGURE OUT WHAT'S WRONG WITH PATH
     const background = new Sprite({
-        position: {x: 0, y: 0},
-        imageSrc: '../img/bulkhead-wall-files/bulkhead-wallsx1.png',
+        position: {
+            x: 0,
+            y: 0
+        },
+        imageSrc: './img/background.png',
         canvas: canvas
     })
     console.log(background);
-
+    */
     let player = new Player({
         position: {
             x: canvas.width / 2 - 75,

@@ -2,5 +2,5 @@ Fix timer for attack function
 Fix attack box positioning 
 Add lifebar 
 Add timer 
-Add background 
+Add background (path not being read?) 
 Add sprite 
