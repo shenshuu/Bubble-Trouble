@@ -9,22 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = sizes.width;
     canvas.height = sizes.height;
     const ctx = canvas.getContext('2d');
-    const background = document.querySelector('#background');
-   
-    background.style.width = sizes.width;
-    background.style.height = sizes.height;
-    /* 
-    // FIGURE OUT WHAT'S WRONG WITH PATH
-    const background = new Sprite({
-        position: {
-            x: 0,
-            y: 0
-        },
-        imageSrc: './img/background.png',
-        canvas: canvas
-    })
-    console.log(background);
-    */
 
     let player = new Player({
         position: {

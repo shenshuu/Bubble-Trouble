@@ -7,11 +7,6 @@ export default class Player {
         this.position = position;
         this.velocity = velocity;
         this.isAttacking = false;
-        // this.attackBox = {
-        //     position: this.position,
-        //     width: 10,
-        //     height: -window.innerHeight
-        // }
         this.attackBox = new Missle({
             position: position,
             ctx: ctx
@@ -55,23 +50,9 @@ export default class Player {
                     clearInterval(interval);
                 }
             }, 40);
-            that.isAttacking = false;
-            // that.growAttackBox();
+            that.isAttacking = false
         }, 50);
     }
-
-    // growAttackBox() {
-    //     let that = this;
-    //     const interval = setInterval(() => {
-    //         // that.attackBox.y -= 15;
-    //         that.attackBox.height -= 15;
-    //         if (that.attackBox.position.y <= 0) {
-    //             that.attackBox.height = 0;
-    //             clearInterval(interval);
-    //             console.log(that.attackBox);
-    //         } 
-    //     }, 40);
-    // }
 
     // refactor this method to take y-coordinates into account 
     collided(ball) {
