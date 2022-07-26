@@ -81,13 +81,19 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let bubble of bubbles) {
             bubble.update();
             missle.collided(bubble);
-            
+
+            if (player.missle && (player.missle.collided(bubble) ||
+                player.missle.y <= 0)) {
+                player.missle = null;
+            }
+
             if (player.killedBy(bubble)) {
                 console.log('dead');
             }
 
             if (player.missle && player.missle.collided(bubble)) {
                 // debugger;
+                player.missle.update();
                 // player.missle.update();
                 if (bubble.children.length === 0) {
                     bubble.split();

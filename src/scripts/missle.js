@@ -1,6 +1,7 @@
 export default class Missle {
     constructor({position, ctx}) {
         this.position = position;
+        this.velocity = 7;
         this.hit = false;
         this.height = 10;
         this.width = 10;
@@ -22,8 +23,8 @@ export default class Missle {
             this.position.y = 575;
             this.height = 0;
         }
-        this.height += 15;
-        this.position.y -= 15;
+        this.height += this.velocity;
+        this.position.y -= this.velocity;
     }
 
     collided(ball) {
