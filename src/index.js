@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             x: canvas.width / 2 - 75,
             y: canvas.height - 150
         },
-        velocity: {x: 0, y: 0},
+        velocity: {x: 2, y: -2},
         ctx: ctx
     });
 
@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
             y: 200, 
         },
         velocity: {
-            x: 0, 
-            y: 0,
+            x: 3, 
+            y: 5,
         },
         radius: 30,
         ctx: ctx,
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
-        bubble.draw();
+        bubble.update();
 
         player.velocity.x = 0;
         if (keys.a.pressed && player.lastKey === 'a') {
