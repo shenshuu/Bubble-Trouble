@@ -18,6 +18,10 @@ body {
     padding: 8px;
 }
 
+// .header h1 {
+//     font-family: 'Alfa Slab One', cursive;
+// }
+
 .top {
     display: flex;
     justify-content: space-between;
@@ -59,10 +63,17 @@ body {
 }
 
 .footer .directions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 80px;
 }
 
 .footer .attack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
     margin-right: 150px;
 }
 

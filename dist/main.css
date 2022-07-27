@@ -62,10 +62,17 @@ body {
 }
 
 .footer .directions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 80px;
 }
 
 .footer .attack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
   margin-right: 150px;
 }
 
