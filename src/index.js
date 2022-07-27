@@ -2,7 +2,8 @@ import Player from './scripts/player';
 import Bubble from './scripts/bubble';
 import Sprite from './scripts/sprite';
 import idleChicken from './img/chicken/idle.png';
-import runningChicken from './img/chicken/run.png';
+import runRight from './img/chicken/run_right.png';
+import runLeft from './img/chicken/run_left.png';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
 
-    console.log(runningChicken);
     let player = new Player({
         position: {
             x: 100,
@@ -31,8 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 imageSrc: idleChicken,
                 framesMax: 6
             },
-            run: {
-                imageSrc: runningChicken,
+            runRight: {
+                imageSrc: runRight,
+                framesMax: 10
+            },
+            runLeft: {
+                imageSrc: runLeft,
                 framesMax: 10
             }
         }
@@ -101,16 +105,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
    
         player.velocity = 0;
-        if (player.keys.a.pressed && player.lastKey === 'a') {
-            player.image = player.sprites.run.image;
+        player.image = player.sprites.idle.image;
+        player.framesMax = 6;
+
+        if (player.keys.a.pressed && player.lastKey === 'a' ||
+        player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
+            player.image = player.sprites.runRight.image;
+            player.framesMax = 10;
             player.velocity = -3.2;
-        } else if (player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
-            player.velocity = -3.2;
-        } else if (player.keys.d.pressed && player.lastKey === 'd') {
+        } else if (player.keys.d.pressed && player.lastKey === 'd' ||
+        player.keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
+            player.image = player.sprites.runRight.image;
+            player.framesMax = 10;
             player.velocity = 3.2;
-        } else if (player.keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
-            player.velocity = 3.2;
-        }
+        } 
     }
     
     animate();
