@@ -1,39 +1,33 @@
 export default class Missile {
     constructor({position, ctx}) {
         this.position = position;
-        this.velocity = 7;
+        this.velocity = 9;
         this.hit = false;
         this.reseted = false;
-        this.height = 10;
-        this.width = 10;
+        this.height = 5;
+        this.width = 5;
         this.ctx = ctx;
     }
 
     draw() {
-        // debugger;
         this.ctx.fillStyle = 'yellow';
         this.ctx.fillRect(
             this.position.x,
             this.position.y,
             this.width,
             this.height);
-        // debugger;
     }
 
-    
 
     update() {
-        // debugger;
         this.draw();
         if (this.position.y <= 100 || this.hit) {
             this.reseted = true;
-            this.reset();
         }
-        // debugger;
         this.height += this.velocity;
         this.position.y -= this.velocity;
-        // debugger;
     }
+
     
     collided(ball) {
         if (ball.position.x - ball.radius <= this.position.x + this.width &&
@@ -45,12 +39,6 @@ export default class Missile {
         } else {
             return false;
         }
-    }
-
-    reset() {
-        this.position.y = 575;
-        this.height = 10;
-        this.hit = false;
     }
 
 }

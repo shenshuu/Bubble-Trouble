@@ -5,4 +5,10 @@ export default class Game {
         this.canvas = canvas;
         this.ctx = ctx;
     }
+
+    isGameOver() {
+        return this.player.numLives === 0;
+    }
+
+    
 }
