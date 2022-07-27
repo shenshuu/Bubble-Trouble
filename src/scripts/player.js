@@ -11,6 +11,16 @@ export default class Player {
         this.lastKey = "";
         this.numLives = 3;
         this.ctx = ctx;
+        this.keys = {
+            a: {pressed: false},
+            d: {pressed: false},
+            w: {pressed: false},
+            ArrowLeft: {pressed: false},
+            ArrowRight: {pressed: false},
+            ArrowUp: {pressed: false}
+        }
+
+        this.initPlayerInput();
     }
 
     draw() {
@@ -29,7 +39,6 @@ export default class Player {
     }
 
     attack(x_, y_) {
-        // debugger;
         if (!this.missile) {
             this.missile = new Missile({
                 position: {
@@ -39,7 +48,6 @@ export default class Player {
                 ctx: this.ctx
             })
         }
-        // debugger;
     }
 
     killedBy(ball) {
@@ -52,5 +60,67 @@ export default class Player {
             return false;
         }
     }
+
+    initPlayerInput() {
+        let that = this;
+        window.addEventListener('keydown', (event) => {
+            switch(event.key) {
+                case 'd': 
+                    that.keys.d.pressed = true;
+                    that.lastKey = 'd';
+                    break;
+                case 'a':
+                    that.keys.a.pressed = true;
+                    that.lastKey = 'a';
+                    break;
+                case 'w':
+                    that.keys.w.pressed = true;
+                    that.attack(
+                        that.position.x + that.width / 2,
+                        that.position.y + that.height
+                    );
+                    break;
+                case 'ArrowLeft':
+                    that.keys.ArrowLeft.pressed = true;
+                    that.lastKey = 'ArrowLeft';
+                    break;
+                case 'ArrowRight':
+                    that.keys.ArrowRight.pressed = true;
+                    that.lastKey = 'ArrowRight';
+                    break;
+                case 'ArrowUp':
+                    that.keys.ArrowUp.pressed = true;
+                    that.attack(
+                        that.position.x,
+                        that.position.y
+                    );
+                    break;
+            }
+        })
+    
+        window.addEventListener('keyup', (event) => {
+            switch (event.key) {
+                case 'a':
+                    that.keys.a.pressed = false;
+                    break;
+                case 'd':
+                    that.keys.d.pressed = false;
+                    break;
+                case 'w':
+                    that.keys.w.pressed = false;
+                    break;
+                case 'ArrowLeft':
+                    that.keys.ArrowLeft.pressed = false;
+                    break;
+                case 'ArrowRight':
+                    that.keys.ArrowRight.pressed = false;
+                    break;
+                case 'ArrowUp':
+                    that.keys.ArrowUp.pressed = false;
+                    break;
+            }
+        })
+    }
+
 }
 

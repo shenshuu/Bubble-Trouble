@@ -1,22 +1,14 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
 import Sprite from './scripts/sprite';
-import background from './img/background.png';
-import frog from './img/idle.png';
 
 document.addEventListener("DOMContentLoaded", () => {
     
     const canvas = document.querySelector('.game-canvas');
-    const gameWindow = document.querySelector('.game');
-    const sizes = {width: window.innerWidth, height: window.innerHeight};
-    canvas.width = sizes.width;
-    canvas.height = sizes.height;
-    const groundLevel = 475;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
-
-    let img = new Image();
-    img.src = background;
-    console.log(img);
+    const groundLevel = 475;
 
     let player = new Player({
         position: {
@@ -59,19 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let bubbles = [bubble1, bubble2];
 
-    const keys = {
-        a: {pressed: false},
-        d: {pressed: false},
-        w: {pressed: false},
-        ArrowLeft: {pressed: false},
-        ArrowRight: {pressed: false},
-        ArrowUp: {pressed: false}
-    }
 
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // foo.update();
         player.update();
 
         if (player.missile && !player.missile.reseted) {
@@ -102,76 +85,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
    
         player.velocity.x = 0;
-        if (keys.a.pressed && player.lastKey === 'a') {
+        if (player.keys.a.pressed && player.lastKey === 'a') {
             player.velocity.x = -2;
-        } else if (keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
+        } else if (player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
             player.velocity.x = -2;
-        } else if (keys.d.pressed && player.lastKey === 'd') {
+        } else if (player.keys.d.pressed && player.lastKey === 'd') {
             player.velocity.x = 2;
-        } else if (keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
+        } else if (player.keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
             player.velocity.x = 2;
         }
     }
     
     animate();
 
-    window.addEventListener('keydown', (event) => {
-        switch(event.key) {
-            case 'd': 
-                keys.d.pressed = true;
-                player.lastKey = 'd';
-                break;
-            case 'a':
-                keys.a.pressed = true;
-                player.lastKey = 'a';
-                break;
-            case 'w':
-                keys.w.pressed = true;
-                // debugger;
-                player.attack(
-                    player.position.x + player.width / 2,
-                    player.position.y + player.height
-                );
-                break;
-            case 'ArrowLeft':
-                keys.ArrowLeft.pressed = true;
-                player.lastKey = 'ArrowLeft';
-                break;
-            case 'ArrowRight':
-                keys.ArrowRight.pressed = true;
-                player.lastKey = 'ArrowRight';
-                break;
-            case 'ArrowUp':
-                keys.ArrowUp.pressed = true;
-                player.attack(
-                    player.position.x,
-                    player.position.y
-                );
-                break;
-        }
-    })
-
-    window.addEventListener('keyup', (event) => {
-        switch (event.key) {
-            case 'a':
-                keys.a.pressed = false;
-                break;
-            case 'd':
-                keys.d.pressed = false;
-                break;
-            case 'w':
-                keys.w.pressed = false;
-                break;
-            case 'ArrowLeft':
-                keys.ArrowLeft.pressed = false;
-                break;
-            case 'ArrowRight':
-                keys.ArrowRight.pressed = false;
-                break;
-            case 'ArrowUp':
-                keys.ArrowUp.pressed = false;
-                break;
-        }
-    })
   
 })
