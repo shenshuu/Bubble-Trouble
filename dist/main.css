@@ -11,7 +11,7 @@ body {
 }
 
 .header {
-  background-color: darkblue;
+  background-color: #002244;
   color: white;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,8 @@ body {
 }
 
 .top ul li a {
+  font-family: "Helvetica";
+  letter-spacing: 1.5px;
   text-decoration: none;
   color: white;
 }
@@ -50,6 +52,42 @@ body {
 
 .footer {
   display: flex;
+}
+
+.footer .directions, .footer .attack {
+  margin-top: 50px;
+  font-size: 24px;
+  display: flex;
+  color: white;
+}
+
+.footer .directions {
+  margin-left: 80px;
+}
+
+.footer .attack {
+  margin-right: 150px;
+}
+
+.footer .attack div, .footer .directions div {
+  display: flex;
+  border-style: solid;
+  border-width: 5px;
+  border-color: white;
+  border-radius: 5px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+}
+
+.footer .directions div {
+  margin-left: 10px;
+}
+
+.footer .author-note {
+  display: flex;
   flex-direction: column;
   align-items: center;
   height: 5vh;
@@ -57,7 +95,7 @@ body {
   margin: 40px;
 }
 
-.footer p {
+.footer .author-note p {
   font-family: "sans-serif";
   letter-spacing: 5px;
   color: white;
