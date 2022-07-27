@@ -9,17 +9,14 @@ body {
 
 .header {
     background-color: darkblue;
+    color: white;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     height: 8vh;
     width: 100vw;
     padding: 8px;
 }
-
-// .nav {
-//     height: 5vh;
-//     width: 100vw;
-// }
 
 .top {
     display: flex;
@@ -34,6 +31,11 @@ body {
 .top ul li {
     list-style: none;
     padding: 8px;
+}
+
+.top ul li a {
+    text-decoration: none;
+    color: white;
 }
 
 .game {
