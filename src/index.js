@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let bubbles = [bubble1, bubble2];
 
     console.log(player.sprites);
-    
+
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (player.keys.a.pressed && player.lastKey === 'a' ||
         player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
-            player.image = player.sprites.runRight.image;
+            player.image = player.sprites.runLeft.image;
             player.framesMax = 10;
             player.velocity = -3.2;
         } else if (player.keys.d.pressed && player.lastKey === 'd' ||
