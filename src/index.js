@@ -1,12 +1,4 @@
-import Player from './scripts/player';
-import Bubble from './scripts/bubble';
-import Timer from './scripts/timer';
-
-import idleRight from './img/chicken/idleRight.png';
-import idleLeft from './img/chicken/idleLeft.png';
-import runRight from './img/chicken/run_right.png';
-import runLeft from './img/chicken/run_left.png';
-
+import Game from './scripts/game';
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -15,119 +7,56 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
 
-    let player = new Player({
-        position: {
-            x: 100,
-            y: 435
-        },
-        ctx: ctx,
-        imageSrc: idleRight,
-        framesMax: 6,
-        scale: 2.4,
-        offset: {
-            x: 12,
-            y: -22
-        },
-        sprites: {
-            idleRight: {
-                imageSrc: idleRight,
-                framesMax: 6
-            },
-            idleLeft: {
-                imageSrc: idleLeft,
-                framesMax: 6
-            },
-            runRight: {
-                imageSrc: runRight,
-                framesMax: 10
-            },
-            runLeft: {
-                imageSrc: runLeft,
-                framesMax: 10
-            }
-        }
-    });
+    let game = new Game(canvas, ctx);
 
-    let bubble1 = new Bubble({
-        position: {
-            x: 450,
-            y: 200, 
-        },
-        velocity: {
-            x: 3, 
-            y: 5,
-        },
-        radius: 30,
-        ctx: ctx,
-    });
-
-    let bubble2 = new Bubble({
-        position: {
-            x: 1000,
-            y: 200, 
-        },
-        velocity: {
-            x: -3, 
-            y: 5,
-        },
-        radius: 30,
-        ctx: ctx,
-    });
-
-
-    let bubbles = [bubble1, bubble2];
-
-    let timer = new Timer(ctx);
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        player.update();
-        timer.update();
-        if (player.missile && !player.missile.reseted) {
-            player.missile.update();
+        game.update();
+        if (game.player.missile && !game.player.missile.reseted) {
+            game.player.missile.update();
         }
 
-         if (player.missile && player.missile.position.y <= 50) {
-            player.missile = null;
+         if (game.player.missile && game.player.missile.position.y <= 50) {
+            game.player.missile = null;
         }
 
-        for (let bubble of bubbles) {
+        for (let bubble of game.enemies) {
             bubble.update();
-
-            if (player.killedBy(bubble)) {
+            if (game.player.killedBy(bubble)) {
                 console.log('dead');
             }
 
-            if (player.missile && player.missile.collided(bubble)) {
-                player.missile = null;
+            if (game.player.missile && game.player.missile.collided(bubble)) {
+                game.player.missile = null;
                 if (bubble.children.length === 0) {
                     bubble.split();
                     for (let child of bubble.children) {
-                        bubbles.push(child);
+                        game.enemies.push(child);
                     }
-                    bubbles = bubbles.filter((bub) => bub !== bubble);
+                    game.enemies = game.enemies.filter((bub) => bub !== bubble);
                 }
             }
         }
    
-        player.velocity = 0;
-        player.framesMax = 6;
-        if (player.lastKey === 'd') {
-            player.image = player.sprites.idleRight.image;
+        game.player.velocity = 0;
+        game.player.framesMax = 6;
+        if (game.player.lastKey === 'd') {
+            game.player.image = game.player.sprites.idleRight.image;
         } else {
-            player.image = player.sprites.idleLeft.image;
+            game.player.image = game.player.sprites.idleLeft.image;
         }
 
-        if (player.keys.a.pressed && player.lastKey === 'a' ||
-        player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
-            player.image = player.sprites.runLeft.image;
-            player.framesMax = 10;
-            player.velocity = -3.2;
-        } else if (player.keys.d.pressed && player.lastKey === 'd' ||
-        player.keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
-            player.image = player.sprites.runRight.image;
-            player.framesMax = 10;
-            player.velocity = 3.2;
+        if (game.player.keys.a.pressed && game.player.lastKey === 'a' ||
+        game.player.keys.ArrowLeft.pressed && game.player.lastKey === 'ArrowLeft') {
+            game.player.image = game.player.sprites.runLeft.image;
+            game.player.framesMax = 10;
+            game.player.velocity = -3.2;
+        } else if (game.player.keys.d.pressed && game.player.lastKey === 'd' ||
+        game.player.keys.ArrowRight.pressed && game.player.lastKey === 'ArrowRight') {
+            game.player.image = game.player.sprites.runRight.image;
+            game.player.framesMax = 10;
+            game.player.velocity = 3.2;
         } 
     }
     
