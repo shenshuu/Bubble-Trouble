@@ -2,7 +2,13 @@ import Missile from "./missile";
 import Sprite from "./sprite";
 
 export default class Player extends Sprite {
-    constructor({position, ctx, imageSrc, scale = 1, framesMax = 1, offset = {x: 0, y: 0}}) {
+    constructor({
+        position, 
+        ctx, imageSrc, 
+        scale = 1, framesMax = 1, 
+        offset = {x: 0, y: 0},
+        sprites
+    }) {
         super({
             position,
             imageSrc,
@@ -11,6 +17,7 @@ export default class Player extends Sprite {
             offset
         })
         
+        this.sprites = sprites
         this.velocity = 50;
         this.missile = null;
         this.height = 100;
@@ -18,6 +25,11 @@ export default class Player extends Sprite {
         this.lastKey = "";
         this.numLives = 3;
         this.ctx = ctx;
+
+        for (const sprite in this.sprites) {
+            this.sprites[sprite].image = new Image();
+            this.sprites[sprite].image.src = this.sprites[sprite].imageSrc;
+        }
         
         this.keys = {
             a: {pressed: false},
@@ -35,13 +47,6 @@ export default class Player extends Sprite {
         this.initPlayerInput();
     } 
 
-    // draw() {
-    //     this.ctx.fillStyle = 'green';
-    //     this.ctx.fillRect(
-    //         this.position.x, 
-    //         this.position.y, 
-    //         this.width, this.height);
-    // }
 
     update() {
         this.draw();

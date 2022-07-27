@@ -27,7 +27,7 @@ export default class Bubble {
             this.position.x - this.radius <= 140) {
             this.velocity.x = -this.velocity.x;
         }
-        if (this.position.y + this.radius >= window.innerHeight - 170) {
+        if (this.position.y + this.radius >= window.innerHeight - 190) {
             this.velocity.y = -this.velocity.y;
         } else {
             this.velocity.y += this.gravity;

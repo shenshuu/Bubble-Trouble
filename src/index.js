@@ -1,7 +1,8 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
 import Sprite from './scripts/sprite';
-import idle from './img/chicken/idle.png';
+import idleChicken from './img/chicken/idle.png';
+import runningChicken from './img/chicken/run.png';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,30 +12,29 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
 
-    let idleFrog = new Sprite({
-        position: {
-            x: 300, 
-            y: 300
-        },
-        imageSrc: idle,
-        ctx: ctx,
-        scale: 2,
-        framesMax: 6
-    })
-
-    
+    console.log(runningChicken);
     let player = new Player({
         position: {
             x: 100,
             y: 435
         },
         ctx: ctx,
-        imageSrc: idle,
+        imageSrc: idleChicken,
         framesMax: 6,
         scale: 2.4,
         offset: {
             x: 12,
             y: -22
+        },
+        sprites: {
+            idle: {
+                imageSrc: idleChicken,
+                framesMax: 6
+            },
+            run: {
+                imageSrc: runningChicken,
+                framesMax: 10
+            }
         }
     });
 
@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
-        idleFrog.update();
 
         if (player.missile && !player.missile.reseted) {
             player.missile.update();
@@ -103,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
    
         player.velocity = 0;
         if (player.keys.a.pressed && player.lastKey === 'a') {
+            player.image = player.sprites.run.image;
             player.velocity = -3.2;
         } else if (player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
             player.velocity = -3.2;
