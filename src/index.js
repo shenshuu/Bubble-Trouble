@@ -1,5 +1,6 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
+import Timer from './scripts/timer';
 
 import idleRight from './img/chicken/idleRight.png';
 import idleLeft from './img/chicken/idleLeft.png';
@@ -76,12 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let bubbles = [bubble1, bubble2];
 
-
+    let timer = new Timer(ctx);
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
-
+        timer.update();
         if (player.missile && !player.missile.reseted) {
             player.missile.update();
         }
