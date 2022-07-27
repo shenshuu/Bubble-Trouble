@@ -20,8 +20,8 @@ export default class Player extends Sprite {
         this.sprites = sprites
         this.velocity = 50;
         this.missile = null;
-        this.height = 100;
-        this.width = 50;
+        this.height = 50;
+        this.width = 35;
         this.lastKey = "";
         this.numLives = 3;
         this.ctx = ctx;

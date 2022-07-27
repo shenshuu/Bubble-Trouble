@@ -12,6 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (game.isGameOver()) {
+            // alert('Would you like to play again?');
+            // PROMPT USER WITH A SCREEN ASKING THEM IF THEY WOULD LIKE TO PLAY AGAIN 
+            console.log('ouch');
+        }
+
         game.update();
         if (game.player.missile && !game.player.missile.reseted) {
             game.player.missile.update();

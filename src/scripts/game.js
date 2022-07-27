@@ -16,7 +16,7 @@ export default class Game {
     }
 
     isGameOver() {
-        return this.player.numLives === 0;
+        return this.player.gameOver() || this.timer.timeUp();
     }
 
     update() {
@@ -83,7 +83,6 @@ export default class Game {
             radius: 30,
             ctx: this.ctx,
         });
-    
     
         this.enemies = [enemy1, enemy2];
     }
