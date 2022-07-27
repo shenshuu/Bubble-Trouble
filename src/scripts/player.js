@@ -75,11 +75,15 @@ export default class Player extends Sprite {
             this.position.x <= ball.position.x + ball.radius &&
             ball.position.y + ball.radius <= this.position.y + this.height &&
             this.position.y <= ball.position.y + ball.radius) {
-            console.log('player hit');
+            this.numLives -= 1;
             return true; 
         } else {
             return false;
         }
+    }
+
+    gameOver() {
+        return this.numLives === 0;
     }
 
     initPlayerInput() {
