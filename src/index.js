@@ -1,7 +1,8 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
-import Sprite from './scripts/sprite';
-import idleChicken from './img/chicken/idle.png';
+
+import idleRight from './img/chicken/idleRight.png';
+import idleLeft from './img/chicken/idleLeft.png';
 import runRight from './img/chicken/run_right.png';
 import runLeft from './img/chicken/run_left.png';
 
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             y: 435
         },
         ctx: ctx,
-        imageSrc: idleChicken,
+        imageSrc: idleRight,
         framesMax: 6,
         scale: 2.4,
         offset: {
@@ -27,8 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
             y: -22
         },
         sprites: {
-            idle: {
-                imageSrc: idleChicken,
+            idleRight: {
+                imageSrc: idleRight,
+                framesMax: 6
+            },
+            idleLeft: {
+                imageSrc: idleLeft,
                 framesMax: 6
             },
             runRight: {
@@ -71,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let bubbles = [bubble1, bubble2];
 
-    console.log(player.sprites);
 
     function animate() {
         window.requestAnimationFrame(animate);
@@ -90,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             bubble.update();
 
             if (player.killedBy(bubble)) {
-                player.numLives -= 1;
+                console.log('dead');
             }
 
             if (player.missile && player.missile.collided(bubble)) {
@@ -106,8 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
    
         player.velocity = 0;
-        player.image = player.sprites.idle.image;
         player.framesMax = 6;
+        if (player.lastKey === 'd') {
+            player.image = player.sprites.idleRight.image;
+        } else {
+            player.image = player.sprites.idleLeft.image;
+        }
 
         if (player.keys.a.pressed && player.lastKey === 'a' ||
         player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
