@@ -11,15 +11,15 @@ body {
     background-color: darkblue;
     display: flex;
     flex-direction: column;
-    height: 12vh;
+    height: 8vh;
     width: 100vw;
     padding: 8px;
 }
 
-.nav {
-    height: 5vh;
-    width: 100vw;
-}
+// .nav {
+//     height: 5vh;
+//     width: 100vw;
+// }
 
 .top {
     display: flex;
@@ -44,7 +44,6 @@ body {
 }
 
 .footer {
-    background-color: red;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,7 +53,8 @@ body {
 }
 
 .footer p {
-    letter-spacing: 2px;
+    font-family: 'sans-serif';
+    letter-spacing: 5px;
     color: white;
 }
 
