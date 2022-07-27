@@ -1,17 +1,22 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
 import Sprite from './scripts/sprite';
-import Missile from './scripts/missile';
+import background from './img/background.png';
+import frog from './img/idle.png';
 
 document.addEventListener("DOMContentLoaded", () => {
     
     const canvas = document.querySelector('.game-canvas');
+    const gameWindow = document.querySelector('.game');
     const sizes = {width: window.innerWidth, height: window.innerHeight};
     canvas.width = sizes.width;
     canvas.height = sizes.height;
     const groundLevel = 475;
     const ctx = canvas.getContext('2d');
 
+    let img = new Image();
+    img.src = background;
+    console.log(img);
 
     let player = new Player({
         position: {
@@ -63,17 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
         ArrowUp: {pressed: false}
     }
 
-    let missile = new Missile({
-        position: {
-            x: 200,
-            y: groundLevel
-        },
-        ctx: ctx
-    })
-
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // foo.update();
         player.update();
 
         if (player.missile && !player.missile.reseted) {
@@ -116,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     animate();
-    
 
     window.addEventListener('keydown', (event) => {
         switch(event.key) {
@@ -132,8 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 keys.w.pressed = true;
                 // debugger;
                 player.attack(
-                    player.position.x,
-                    player.position.y
+                    player.position.x + player.width / 2,
+                    player.position.y + player.height
                 );
                 break;
             case 'ArrowLeft':

@@ -1,7 +1,7 @@
 export default class Sprite {
-    constructor({position, imageSrc, canvas}) {
+    constructor({position, imageSrc, ctx}) {
         this.position = position;
-        this.canvas = canvas;
+        this.ctx = ctx;
         this.width = 0;
         this.height = 0;
         this.image = new Image();
@@ -9,10 +9,14 @@ export default class Sprite {
     }
 
     draw() {
-        this.canvas.drawImage(
+        this.ctx.drawImage(
             this.image, 
             this.position.x, 
             this.position.y
         );
+    }
+
+    update() {
+        this.draw();
     }
 }
