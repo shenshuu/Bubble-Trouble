@@ -1,3 +1,5 @@
 Add lifebar 
 Add timer 
+Add sound effects 
+Add winning game logic 
 Add player sprite 
