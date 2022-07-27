@@ -81,13 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
    
         player.velocity = 0;
         if (player.keys.a.pressed && player.lastKey === 'a') {
-            player.velocity = -3;
+            player.velocity = -3.2;
         } else if (player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
-            player.velocity = -3;
+            player.velocity = -3.2;
         } else if (player.keys.d.pressed && player.lastKey === 'd') {
-            player.velocity = 3;
+            player.velocity = 3.2;
         } else if (player.keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
-            player.velocity = 3;
+            player.velocity = 3.2;
         }
     }
     

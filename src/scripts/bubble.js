@@ -9,7 +9,8 @@ export default class Bubble {
     }
 
     draw() {
-        this.ctx.fillStyle = 'yellow'
+        this.ctx.fillStyle = 'yellow';
+        this.ctx.strokeStyle = 'black';
         this.ctx.lineWidth = 5;
         this.ctx.beginPath();
         this.ctx.arc(
@@ -17,6 +18,7 @@ export default class Bubble {
             this.position.y,
             this.radius, 0, 2*Math.PI
         )
+        this.ctx.stroke();
         this.ctx.fill();
     }
 

@@ -11,6 +11,7 @@ body {
 }
 
 .header {
+  background-color: darkblue;
   display: flex;
   flex-direction: column;
   height: 12vh;
@@ -26,7 +27,6 @@ body {
 .top {
   display: flex;
   justify-content: space-between;
-  background-color: red;
 }
 
 .top ul {
@@ -54,6 +54,11 @@ body {
   height: 5vh;
   width: 100vw;
   margin: 40px;
+}
+
+.footer p {
+  letter-spacing: 2px;
+  color: white;
 }
 
 #background {
