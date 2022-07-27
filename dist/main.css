@@ -55,7 +55,7 @@ body {
 }
 
 .footer .directions, .footer .attack {
-  margin-top: 50px;
+  margin-top: 30px;
   font-size: 24px;
   display: flex;
   color: white;
@@ -76,10 +76,20 @@ body {
   margin-right: 150px;
 }
 
+.footer .attack p, .footer .directions p {
+  margin-right: 10px;
+  letter-spacing: 3px;
+  font-size: 16px;
+}
+
+.footer .directions p {
+  margin-right: -4px;
+}
+
 .footer .attack div, .footer .directions div {
   display: flex;
   border-style: solid;
-  border-width: 5px;
+  border-width: 2px;
   border-color: white;
   border-radius: 5px;
   padding: 8px;
