@@ -8,23 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
-    const groundLevel = 475;
 
     let player = new Player({
         position: {
             x: 100,
-            y: groundLevel
-        },
-        velocity: {
-            x: 50, 
-            y: -10
+            y: 435
         },
         ctx: ctx
     });
 
     let bubble1 = new Bubble({
         position: {
-            x: 50,
+            x: 450,
             y: 200, 
         },
         velocity: {
@@ -37,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let bubble2 = new Bubble({
         position: {
-            x: canvas.width - 50,
+            x: 1000,
             y: 200, 
         },
         velocity: {
@@ -61,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             player.missile.update();
         }
 
-         if (player.missile && player.missile.position.y <= 100) {
+         if (player.missile && player.missile.position.y <= 50) {
             player.missile = null;
         }
 
@@ -84,15 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
    
-        player.velocity.x = 0;
+        player.velocity = 0;
         if (player.keys.a.pressed && player.lastKey === 'a') {
-            player.velocity.x = -2;
+            player.velocity = -3;
         } else if (player.keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft') {
-            player.velocity.x = -2;
+            player.velocity = -3;
         } else if (player.keys.d.pressed && player.lastKey === 'd') {
-            player.velocity.x = 2;
+            player.velocity = 3;
         } else if (player.keys.ArrowRight.pressed && player.lastKey === 'ArrowRight') {
-            player.velocity.x = 2;
+            player.velocity = 3;
         }
     }
     

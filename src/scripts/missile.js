@@ -21,7 +21,7 @@ export default class Missile {
 
     update() {
         this.draw();
-        if (this.position.y <= 100 || this.hit) {
+        if (this.position.y <= 50 || this.hit) {
             this.reseted = true;
         }
         this.height += this.velocity;

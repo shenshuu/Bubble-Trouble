@@ -1,9 +1,9 @@
 import Missile from "./missile";
 
 export default class Player {
-    constructor({position, velocity, ctx}) {
+    constructor({position, ctx}) {
         this.position = position;
-        this.velocity = velocity;
+        this.velocity = 50;
         this.missile = null;
         this.height = 100;
         this.width = 50;
@@ -32,9 +32,10 @@ export default class Player {
 
     update() {
         this.draw();
-        if (this.position.x + this.velocity.x + 100 >= window.innerWidth) 
-            this.velocity.x = 0;
-        this.position.x += this.velocity.x;
+        if (this.position.x + this.velocity >= window.innerWidth - 195 ||
+            this.position.x + this.velocity <= 145) 
+            this.velocity = 0;
+        this.position.x += this.velocity;
     }
 
     attack(x_, y_) {

@@ -9,7 +9,7 @@ export default class Bubble {
     }
 
     draw() {
-        this.ctx.fillStyle = 'red'
+        this.ctx.fillStyle = 'yellow'
         this.ctx.lineWidth = 5;
         this.ctx.beginPath();
         this.ctx.arc(
@@ -21,11 +21,11 @@ export default class Bubble {
     }
 
     update() {
-        if (this.position.x + this.radius >= window.innerWidth ||
-            this.position.x - this.radius <= 0) {
+        if (this.position.x + this.radius >= window.innerWidth - 142 ||
+            this.position.x - this.radius <= 140) {
             this.velocity.x = -this.velocity.x;
         }
-        if (this.position.y + this.radius >= window.innerHeight) {
+        if (this.position.y + this.radius >= window.innerHeight - 170) {
             this.velocity.y = -this.velocity.y;
         } else {
             this.velocity.y += this.gravity;
