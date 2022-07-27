@@ -1,6 +1,8 @@
 import Player from './scripts/player';
 import Bubble from './scripts/bubble';
 import Sprite from './scripts/sprite';
+import idle from './img/chicken/idle.png';
+
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -9,6 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
 
+    let idleFrog = new Sprite({
+        position: {
+            x: 300, 
+            y: 300
+        },
+        imageSrc: idle,
+        ctx: ctx,
+        scale: 2,
+        framesMax: 6
+    })
+
+    
     let player = new Player({
         position: {
             x: 100,
@@ -51,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update();
+        idleFrog.update();
 
         if (player.missile && !player.missile.reseted) {
             player.missile.update();
