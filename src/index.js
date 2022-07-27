@@ -28,7 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
             x: 100,
             y: 435
         },
-        ctx: ctx
+        ctx: ctx,
+        imageSrc: idle,
+        framesMax: 6,
+        scale: 2.4,
+        offset: {
+            x: 12,
+            y: -22
+        }
     });
 
     let bubble1 = new Bubble({

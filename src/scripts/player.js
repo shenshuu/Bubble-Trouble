@@ -1,8 +1,16 @@
 import Missile from "./missile";
+import Sprite from "./sprite";
 
-export default class Player {
-    constructor({position, ctx}) {
-        this.position = position;
+export default class Player extends Sprite {
+    constructor({position, ctx, imageSrc, scale = 1, framesMax = 1, offset = {x: 0, y: 0}}) {
+        super({
+            position,
+            imageSrc,
+            scale,
+            framesMax,
+            offset
+        })
+        
         this.velocity = 50;
         this.missile = null;
         this.height = 100;
@@ -10,6 +18,7 @@ export default class Player {
         this.lastKey = "";
         this.numLives = 3;
         this.ctx = ctx;
+        
         this.keys = {
             a: {pressed: false},
             d: {pressed: false},
@@ -19,19 +28,25 @@ export default class Player {
             ArrowUp: {pressed: false}
         }
 
-        this.initPlayerInput();
-    }
+        this.framesCurrent = 0;
+        this.framesElapsed = 0;
+        this.framesHold = 8;
 
-    draw() {
-        this.ctx.fillStyle = 'green';
-        this.ctx.fillRect(
-            this.position.x, 
-            this.position.y, 
-            this.width, this.height);
-    }
+        this.initPlayerInput();
+    } 
+
+    // draw() {
+    //     this.ctx.fillStyle = 'green';
+    //     this.ctx.fillRect(
+    //         this.position.x, 
+    //         this.position.y, 
+    //         this.width, this.height);
+    // }
 
     update() {
         this.draw();
+        this.animateFrames();
+
         if (this.position.x + this.velocity >= window.innerWidth - 195 ||
             this.position.x + this.velocity <= 145) 
             this.velocity = 0;
@@ -55,6 +70,7 @@ export default class Player {
             this.position.x <= ball.position.x + ball.radius &&
             ball.position.y + ball.radius <= this.position.y + this.height &&
             this.position.y <= ball.position.y + ball.radius) {
+            console.log('player hit');
             return true; 
         } else {
             return false;

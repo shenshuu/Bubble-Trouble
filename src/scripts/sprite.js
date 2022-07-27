@@ -1,14 +1,12 @@
 export default class Sprite {
-    constructor({position, imageSrc, ctx, scale = 1, framesMax = 1}) {
+    constructor({position, imageSrc, ctx, scale = 1, framesMax = 1, offset = {x: 0, y: 0}}) {
         this.position = position;
+        this.offset = offset;
         this.ctx = ctx;
         this.width = 0;
         this.height = 0;
         this.scale = scale;
         this.framesMax = framesMax;
-        this.framesCurrent = 0;
-        this.framesElapsed = 0;
-        this.framesHold = 8;
         this.image = new Image();
         this.image.src = imageSrc;
     }
@@ -20,15 +18,14 @@ export default class Sprite {
             this.framesCurrent * (this.image.height / this.framesMax), 
             this.image.width,
             this.image.height / this.framesMax,
-            this.position.x, 
-            this.position.y,
+            this.position.x - this.offset.x, 
+            this.position.y - this.offset.y,
             this.image.width * this.scale, 
             (this.image.height / this.framesMax) * this.scale
         );
     }
 
-    update() {
-        this.draw();
+    animateFrames() {
         this.framesElapsed += 1;
 
         if (this.framesElapsed % this.framesHold === 0) {
@@ -38,5 +35,10 @@ export default class Sprite {
                 this.framesCurrent = 0;
             }
         }
+    }
+
+    update() {
+        this.draw();
+        this.animateFrames();
     }
 }
