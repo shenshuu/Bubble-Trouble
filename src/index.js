@@ -71,7 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let bubbles = [bubble1, bubble2];
 
-
+    console.log(player.sprites);
+    
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
