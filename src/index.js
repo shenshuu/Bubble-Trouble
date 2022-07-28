@@ -1,6 +1,5 @@
 import Bubble from './scripts/bubble';
 import Game from './scripts/game';
-// import Missile from './scripts/missile';
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -14,9 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const startScreen = document.getElementsByClassName('modal');
     let game = new Game(canvas, ctx);
     
-    let interval;
     start.addEventListener('click', () => {
-        interval = setInterval(() => {
+        setInterval(() => {
             if (Math.random() < 0.6) {
                 let bubble = new Bubble({
                     position: {
@@ -39,14 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
         gameMusic.play();
         animate();
     });
-
-    // let missile = new Missile({
-    //     position: {
-    //         x: 300,
-    //         y: 300
-    //     },
-    //     ctx: ctx
-    // });
     
 
     function animate() {
@@ -59,14 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
             game = new Game(canvas, ctx);
             gameMusic.play();
         }
-
-        if (game.enemies.length === 0) {
-            alert('You Lose!');
-            clearInterval(interval);
-        }
-        
-        // missile.update();
-
 
         game.update();
         if (game.player.missile && !game.player.missile.reseted) {
