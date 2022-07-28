@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const startScreen = document.getElementsByClassName('modal');
     let game = new Game(canvas, ctx);
     
+    let interval;
     start.addEventListener('click', () => {
-        setInterval(() => {
+        interval = setInterval(() => {
             if (Math.random() < 0.6) {
                 let bubble = new Bubble({
                     position: {
@@ -60,10 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (game.enemies.length === 0) {
-            gameMusic.pause();
-            alert('You Won!');
-            let game = new Game(canvas, ctx);
-            gameMusic.play();
+            clearInterval(interval);
         }
         
         // missile.update();

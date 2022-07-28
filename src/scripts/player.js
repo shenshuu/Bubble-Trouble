@@ -122,7 +122,7 @@ export default class Player extends Sprite {
         if (ball.position.x - ball.radius <= this.position.x + this.width &&
             this.position.x <= ball.position.x + ball.radius &&
             ball.position.y + ball.radius <= this.position.y + this.height &&
-            this.position.y <= ball.position.y + ball.radius && this.seconds >= 1.2) {
+            this.position.y <= ball.position.y + ball.radius && this.seconds >= 1) {
             this.seconds = 0;
             this.lives.pop();
             return true; 
