@@ -7,10 +7,8 @@ export default class Timer {
     }
 
     draw() {
-        // this.ctx.strokeStyle = 'black';
         this.ctx.fillStyle = '#b2d5df';
         this.ctx.fillRect(144, 0, this.width, this.height);
-        // this.ctx.strokeRect();
     }
 
     update() {

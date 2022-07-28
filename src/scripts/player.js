@@ -49,7 +49,7 @@ export default class Player extends Sprite {
 
 
     update() {
-        this.draw();
+        this.drawVerticalSpriteSheet();
         this.animateFrames();
 
         if (this.position.x + this.velocity >= window.innerWidth - 195 ||
