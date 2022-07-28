@@ -5,9 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="https://kit.fontawesome.com/17501655c9.js" crossorigin="anonymous"></script>
     <script src="./dist/main.js"></script>
@@ -26,9 +23,35 @@
         </div>
       </div>
       <div class="game">
-        <div hidden style="position: absolute; background-color: white; padding: 19% 38% 18% 37%;" class="modal">
-          <h1>Hello</h1>
+        
+        <div style="position: absolute; 
+        background-color: white; 
+        margin-top: 2%;
+        border-radius: 15px;
+        opacity: 0.75;
+        " class="modal">
+          <h1>How to play</h1>
+          <div class="instructions">
+            <p>
+              Use "AD" to move left or right and "L" to shoot streams <br>
+               of fire! Your mission is to destroy all the frogs on the map<br>
+               before the timer runs out without losing all of your lives. 
+            </p>
+          </div>
+          <div class="start-btn">
+            <button>Start</button>
+          </div>
         </div>
+
+        <!-- <div style="position: absolute; 
+        background-color: white; 
+        margin-top: 2%;
+        border-radius: 15px;
+        opacity: 0.75;
+        " class="restart">
+        <h1>foo</h1>
+        </div> -->
+
         <canvas class="game-canvas"></canvas>
         <img src="./src/img/background.png" alt="background" id="background">
       </div>

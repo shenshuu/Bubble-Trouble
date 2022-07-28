@@ -8,7 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
 
+    const start = document.querySelector('.start-btn button');
+    const startScreen = document.getElementsByClassName('modal');
     let game = new Game(canvas, ctx);
+    
+    start.addEventListener('click', () => {
+        startScreen[0].style.zIndex = -10000;
+        animate();
+    });
+
     // let missile = new Missile({
     //     position: {
     //         x: 300,
@@ -89,8 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
             game.player.velocity = 3.2;
         } 
     }
-    
-    animate();
 
   
 })

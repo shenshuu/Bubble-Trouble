@@ -33,7 +33,7 @@ body {
 
 .top ul li {
   list-style: none;
-  padding: 8px;
+  padding: 16px;
 }
 
 .top ul li a {
@@ -130,4 +130,27 @@ canvas {
 
 html, body {
   overflow: hidden;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  z-index: 10000;
+}
+
+.modal .start-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.start-btn button {
+  padding: 8px 12px 8px 12px;
+  opacity: 0.8;
+}
+
+.start-btn button:hover {
+  cursor: pointer;
+  opacity: 1;
 }
