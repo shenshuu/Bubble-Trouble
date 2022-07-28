@@ -105,7 +105,7 @@ export default class Game {
                 }
             }
         });
-    
+
         this.enemies = [enemy1, enemy2];
     }
 }

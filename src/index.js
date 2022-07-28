@@ -1,5 +1,6 @@
+import Bubble from './scripts/bubble';
 import Game from './scripts/game';
-import Missile from './scripts/missile';
+// import Missile from './scripts/missile';
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -7,13 +8,34 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
+    const gameMusic = document.querySelector('.game-music');
 
     const start = document.querySelector('.start-btn button');
     const startScreen = document.getElementsByClassName('modal');
     let game = new Game(canvas, ctx);
     
     start.addEventListener('click', () => {
+        setInterval(() => {
+            if (Math.random() < 0.6) {
+                let bubble = new Bubble({
+                    position: {
+                        x: Math.random() * (1100 - 200) + 200,
+                        y: 200, 
+                    },
+                    velocity: {
+                        x: (Math.random() < 0.5) ? -3 : 3, 
+                        y: Math.random() * (5 - 3) + 3,
+                    },
+                    radius: Math.random() * (40 - 15) + 15,
+                    ctx: ctx,
+                    sprites: game.enemies[0].sprites,
+                });
+                game.enemies.push(bubble);
+            }
+        }, 7500)
+    
         startScreen[0].style.zIndex = -10000;
+        gameMusic.play();
         animate();
     });
 
@@ -24,17 +46,27 @@ document.addEventListener("DOMContentLoaded", () => {
     //     },
     //     ctx: ctx
     // });
+    
 
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if (game.isGameOver()) {
-            // alert('Would you like to play again?');
-            // PROMPT USER WITH A SCREEN ASKING THEM IF THEY WOULD LIKE TO PLAY AGAIN 
-            console.log('ouch');
+            gameMusic.pause();
+            alert('Would you like to play again?');
+            game = new Game(canvas, ctx);
+            gameMusic.play();
         }
+
+        if (game.enemies.length === 0) {
+            gameMusic.pause();
+            alert('You Won!');
+        }
+        
         // missile.update();
+
+
         game.update();
         if (game.player.missile && !game.player.missile.reseted) {
             game.player.missile.update();

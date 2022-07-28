@@ -154,3 +154,7 @@ html, body {
   cursor: pointer;
   opacity: 1;
 }
+
+.sound {
+  margin-left: 70%;
+}

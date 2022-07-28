@@ -88,7 +88,7 @@ export default class Bubble extends Sprite {
                     x: this.velocity.x - 0.25,
                     y: this.velocity.y - 0.25
                 },
-                radius: this.radius / 2,
+                radius: this.radius / 1.5,
                 ctx: this.ctx,
                 sprites: this.sprites
             })
@@ -101,7 +101,7 @@ export default class Bubble extends Sprite {
                     x: -(this.velocity.x + 0.25),
                     y: this.velocity.y - 0.25
                 },
-                radius: this.radius / 2,
+                radius: this.radius / 1.5,
                 ctx: this.ctx,
                 sprites: this.sprites 
             })

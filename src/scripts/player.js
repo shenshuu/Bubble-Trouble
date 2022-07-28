@@ -21,8 +21,8 @@ export default class Player extends Sprite {
         this.seconds = 0;
         let that = this;
         setInterval(() => {
-            that.seconds += 1;
-        }, 1000);
+            that.seconds += 0.1;
+        }, 100);
 
         this.sprites = sprites;
         this.velocity = 50;
@@ -104,7 +104,7 @@ export default class Player extends Sprite {
         if (ball.position.x - ball.radius <= this.position.x + this.width &&
             this.position.x <= ball.position.x + ball.radius &&
             ball.position.y + ball.radius <= this.position.y + this.height &&
-            this.position.y <= ball.position.y + ball.radius && this.seconds >= 1) {
+            this.position.y <= ball.position.y + ball.radius && this.seconds >= 1.2) {
             this.seconds = 0;
             this.lives.pop();
             return true; 

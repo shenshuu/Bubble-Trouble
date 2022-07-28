@@ -19,7 +19,7 @@ export default class Missile extends Sprite {
             this.position.y,
             this.width,
             this.height);
-        // this.updateHorizontal();
+        this.updateHorizontal();
     }
 
 

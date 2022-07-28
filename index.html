@@ -12,6 +12,11 @@
   </head>
 
   <body>
+      <div class="audio">
+        <audio src="./src/sound/Pixelland.mp3" class="game-music"></audio>
+        <audio src="./src/sound/" class="pop-sound"></audio>
+      </div>
+      
       <div class="header">
         <div class="top">
           <h1>Bubble Bash</h1>
@@ -22,8 +27,8 @@
           </ul>
         </div>
       </div>
+
       <div class="game">
-        
         <div style="position: absolute; 
         background-color: white; 
         margin-top: 2%;
@@ -33,14 +38,23 @@
           <h1>How to play</h1>
           <div class="instructions">
             <p>
-              Use "AD" to move left or right and "L" to shoot streams <br>
-               of fire! Your mission is to destroy all the frogs on the map<br>
+              Use "AD" to move left or right and "L" to shoot projectile <br>
+               streams! Your mission is to destroy all the frogs on the map<br>
                before the timer runs out without losing all of your lives. 
             </p>
           </div>
           <div class="start-btn">
             <button>Start</button>
           </div>
+        </div>
+
+        <div style="position: absolute; 
+        margin-top: 2%;
+        border-radius: 15px;
+        opacity: 0.75;"
+        class="sound">
+          <!-- <i class="fa-solid fa-volume"></i> -->
+          <i class='fas fa-volume-up' id="sound-icon" style='font-size:36px; color: "white";'></i>
         </div>
 
         <!-- <div style="position: absolute; 
@@ -55,6 +69,7 @@
         <canvas class="game-canvas"></canvas>
         <img src="./src/img/background.png" alt="background" id="background">
       </div>
+
       <div class="footer">
         <div class="directions">
           <p>LEFT/RIGHT:</p>
