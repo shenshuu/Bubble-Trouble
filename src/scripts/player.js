@@ -60,7 +60,7 @@ export default class Player extends Sprite {
         this.keys = {
             a: {pressed: false},
             d: {pressed: false},
-            w: {pressed: false},
+            l: {pressed: false},
             ArrowLeft: {pressed: false},
             ArrowRight: {pressed: false},
             ArrowUp: {pressed: false}
@@ -129,8 +129,8 @@ export default class Player extends Sprite {
                     that.keys.a.pressed = true;
                     that.lastKey = 'a';
                     break;
-                case 'w':
-                    that.keys.w.pressed = true;
+                case 'l':
+                    that.keys.l.pressed = true;
                     that.attack(
                         that.position.x + that.width / 2,
                         that.position.y + that.height
@@ -162,8 +162,8 @@ export default class Player extends Sprite {
                 case 'd':
                     that.keys.d.pressed = false;
                     break;
-                case 'w':
-                    that.keys.w.pressed = false;
+                case 'l':
+                    that.keys.l.pressed = false;
                     break;
                 case 'ArrowLeft':
                     that.keys.ArrowLeft.pressed = false;
