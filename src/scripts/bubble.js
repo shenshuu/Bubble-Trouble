@@ -1,5 +1,5 @@
 import Sprite from './sprite';
-import slime from '../img/slime.png';
+import slime from '../img/frog_idle.png';
 
 export default class Bubble extends Sprite {
     constructor({position, velocity, radius, ctx}) {
@@ -7,10 +7,10 @@ export default class Bubble extends Sprite {
             position, 
             imageSrc: slime, 
             ctx, scale: radius / 6, 
-            framesMax: 7,
+            framesMax: 4,
             offset: {
-                x: 40,
-                y: 0
+                x: radius * 3.3,
+                y: radius * 6
             }
         })
         this.velocity = velocity;
@@ -24,6 +24,7 @@ export default class Bubble extends Sprite {
     }
 
     draw() {
+        // USE CIRCLES FOR DEBUGGING;
         // this.ctx.fillStyle = 'yellow';
         // this.ctx.strokeStyle = 'black';
         // this.ctx.lineWidth = 5;
@@ -33,8 +34,8 @@ export default class Bubble extends Sprite {
         //     this.position.y,
         //     this.radius, 0, 2*Math.PI
         // )
-        // this.ctx.stroke();
-        // this.ctx.fill();
+        this.ctx.stroke();
+        this.ctx.fill();
         this.updateHorizontal();
     }
 
@@ -53,12 +54,8 @@ export default class Bubble extends Sprite {
         this.position.x += this.velocity.x;
     }
 
-    collided(player) {
-        return player.collided(this);
-    }
-
     split() {
-        if (this.radius >= 10) {
+        if (this.radius >= 20) {
             let b1 = new Bubble({
                 position: {
                     x: this.position.x - 25,
