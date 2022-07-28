@@ -109,6 +109,7 @@ body {
 }
 
 .footer .author-note p {
+    margin-top: 2%;
     font-family: 'sans-serif';
     letter-spacing: 5px;
     color: white;
@@ -130,6 +131,7 @@ html, body {
 }
 
 .modal {
+    font-family: 'Press Start 2P', cursive;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -156,3 +158,12 @@ html, body {
 .sound {
     margin-left: 70%;
 }
+
+.top h1 {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.footer {
+    font-family: 'Press Start 2P', cursive;
+}
+
