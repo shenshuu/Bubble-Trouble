@@ -48,6 +48,24 @@ export default class Player extends Sprite {
                     x: 210,
                     y: 540
                 },
+                ctx: ctx}),
+            new Heart({
+                position: {
+                    x: 240,
+                    y: 540
+                },
+                ctx: ctx}),
+            new Heart({
+                position: {
+                    x: 270,
+                    y: 540
+                },
+                ctx: ctx}),
+            new Heart({
+                position: {
+                    x: 300,
+                    y: 540
+                },
                 ctx: ctx})
         ];
         this.ctx = ctx;
