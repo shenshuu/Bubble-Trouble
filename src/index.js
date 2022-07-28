@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (game.enemies.length === 0) {
+            alert('You Lose!');
             clearInterval(interval);
         }
         
