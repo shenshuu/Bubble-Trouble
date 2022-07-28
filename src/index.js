@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 game.enemies.push(bubble);
             }
-        }, 7500)
+        }, 6000)
         
         startScreen[0].style.zIndex = -10000;
         gameMusic.play();
