@@ -6,6 +6,8 @@ import idleRight from '../img/chicken/idleRight.png';
 import idleLeft from '../img/chicken/idleLeft.png';
 import runRight from '../img/chicken/run_right.png';
 import runLeft from '../img/chicken/run_left.png';
+import frogIdleLeft from '../img/frog_idle_left.png';
+import frogIdleRight from '../img/frog_idle.png';
 
 export default class Game {
     constructor(canvas, ctx) {
@@ -69,6 +71,16 @@ export default class Game {
             },
             radius: 30,
             ctx: this.ctx,
+            sprites: {
+                frogLeft: {
+                    imageSrc: frogIdleLeft,
+                    framesMax: 4
+                },
+                frogRight: {
+                    imageSrc: frogIdleRight,
+                    framesMax: 4
+                }
+            }
         });
     
         let enemy2 = new Bubble({
@@ -82,6 +94,16 @@ export default class Game {
             },
             radius: 30,
             ctx: this.ctx,
+            sprites: {
+                frogLeft: {
+                    imageSrc: frogIdleLeft,
+                    framesMax: 4
+                },
+                frogRight: {
+                    imageSrc: frogIdleRight,
+                    framesMax: 4
+                }
+            }
         });
     
         this.enemies = [enemy1, enemy2];

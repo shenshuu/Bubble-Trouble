@@ -32,21 +32,9 @@ export default class Sprite {
     }
 
     drawHorizontalSpriteSheet() {
-        // this.ctx.drawImage(
-        //     this.image, 
-        //     this.framesCurrent * (this.image.width / this.framesMax), 
-        //     0, 
-        //     this.image.width / this.framesMax,  
-        //     this.image.height,
-        //     this.position.x,
-        //     this.position.y,
-        //     (this.image.width / this.framesMax) * this.scale,
-        //     this.image.height * this.scale
-        // )
         this.ctx.drawImage(
             this.image,
             this.framesCurrent * (this.image.width / this.framesMax),
-            // 0,
             0,
             this.image.width / this.framesMax,
             this.image.height,

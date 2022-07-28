@@ -37,6 +37,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         for (let enemy of game.enemies) {
+
+            if (enemy.velocity.x <= 0) {
+                enemy.image = enemy.sprites.frogLeft.image; 
+                enemy.offset = {
+                    x: enemy.radius * 5,
+                    y: enemy.radius * 6
+                };
+            } else {
+                enemy.image = enemy.sprites.frogRight.image;
+                enemy.offset = {
+                    x: enemy.radius * 3.3, 
+                    y: enemy.radius * 6
+                };
+            }
+
             enemy.update();
             if (game.player.killedBy(enemy)) {
                 console.log('dead');
