@@ -68,7 +68,7 @@ export default class Player extends Sprite {
 
         this.framesCurrent = 0;
         this.framesElapsed = 0;
-        this.framesHold = 8;
+        this.framesHold = 6;
 
         this.initPlayerInput();
     } 

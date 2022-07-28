@@ -1,25 +1,41 @@
-export default class Bubble {
+import Sprite from './sprite';
+import slime from '../img/slime.png';
+
+export default class Bubble extends Sprite {
     constructor({position, velocity, radius, ctx}) {
-        this.position = position;
+        super({
+            position, 
+            imageSrc: slime, 
+            ctx, scale: radius / 6, 
+            framesMax: 7,
+            offset: {
+                x: 40,
+                y: 0
+            }
+        })
         this.velocity = velocity;
         this.gravity = 0.5;
         this.radius = radius;
         this.children = [];
-        this.ctx = ctx;
+
+        this.framesCurrent = 0;
+        this.framesElapsed = 0;
+        this.framesHold = 6;
     }
 
     draw() {
-        this.ctx.fillStyle = 'yellow';
-        this.ctx.strokeStyle = 'black';
-        this.ctx.lineWidth = 5;
-        this.ctx.beginPath();
-        this.ctx.arc(
-            this.position.x, 
-            this.position.y,
-            this.radius, 0, 2*Math.PI
-        )
-        this.ctx.stroke();
-        this.ctx.fill();
+        // this.ctx.fillStyle = 'yellow';
+        // this.ctx.strokeStyle = 'black';
+        // this.ctx.lineWidth = 5;
+        // this.ctx.beginPath();
+        // this.ctx.arc(
+        //     this.position.x, 
+        //     this.position.y,
+        //     this.radius, 0, 2*Math.PI
+        // )
+        // this.ctx.stroke();
+        // this.ctx.fill();
+        this.updateHorizontal();
     }
 
     update() {

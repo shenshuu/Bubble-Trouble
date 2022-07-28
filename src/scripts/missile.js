@@ -13,13 +13,13 @@ export default class Missile extends Sprite {
     }
 
     draw() {
-        // this.ctx.fillStyle = 'yellow';
-        // this.ctx.fillRect(
-        //     this.position.x,
-        //     this.position.y,
-        //     this.width,
-        //     this.height);
-        this.updateHorizontal();
+        this.ctx.fillStyle = 'yellow';
+        this.ctx.fillRect(
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height);
+        // this.updateHorizontal();
     }
 
 
