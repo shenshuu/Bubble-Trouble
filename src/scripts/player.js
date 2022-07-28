@@ -1,5 +1,6 @@
 import Missile from "./missile";
 import Sprite from "./sprite";
+import Heart from "./heart";
 
 export default class Player extends Sprite {
     constructor({
@@ -23,7 +24,26 @@ export default class Player extends Sprite {
         this.height = 50;
         this.width = 35;
         this.lastKey = "";
-        this.numLives = 3;
+        this.lives = [
+            new Heart({
+                position: {
+                    x: 150,
+                    y: 540
+                },
+                ctx: ctx}),
+            new Heart({
+                position: {
+                    x: 180,
+                    y: 540
+                },
+                ctx: ctx}),
+            new Heart({
+                position: {
+                    x: 210,
+                    y: 540
+                },
+                ctx: ctx})
+        ];
         this.ctx = ctx;
 
         for (const sprite in this.sprites) {
@@ -49,6 +69,10 @@ export default class Player extends Sprite {
 
 
     update() {
+
+        for (let heart of this.lives) {
+            heart.updateHorizontal();
+        }
         this.drawVerticalSpriteSheet();
         this.animateFrames();
 
@@ -75,7 +99,7 @@ export default class Player extends Sprite {
             this.position.x <= ball.position.x + ball.radius &&
             ball.position.y + ball.radius <= this.position.y + this.height &&
             this.position.y <= ball.position.y + ball.radius) {
-            this.numLives -= 1;
+            this.lives.pop();
             return true; 
         } else {
             return false;
@@ -83,7 +107,7 @@ export default class Player extends Sprite {
     }
 
     gameOver() {
-        return this.numLives === 0;
+        return this.lives.length === 0;
     }
 
     initPlayerInput() {

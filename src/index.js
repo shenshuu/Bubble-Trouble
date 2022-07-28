@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext('2d');
 
     let game = new Game(canvas, ctx);
-    let heart = new Heart(ctx);
     
     function animate() {
         window.requestAnimationFrame(animate);
@@ -20,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // PROMPT USER WITH A SCREEN ASKING THEM IF THEY WOULD LIKE TO PLAY AGAIN 
             console.log('ouch');
         }
-        heart.updateHorizontal();
+    
         game.update();
         if (game.player.missile && !game.player.missile.reseted) {
             game.player.missile.update();
