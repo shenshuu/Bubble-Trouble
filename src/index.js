@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     start.addEventListener('click', () => {
         setInterval(() => {
-            if (Math.random() < 0.6) {
+            if (Math.random() < 0.4) {
                 let bubble = new Bubble({
                     position: {
                         x: Math.random() * (1100 - 200) + 200,
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 game.enemies.push(bubble);
             }
         }, 7500)
-    
+        
         startScreen[0].style.zIndex = -10000;
         gameMusic.play();
         animate();
