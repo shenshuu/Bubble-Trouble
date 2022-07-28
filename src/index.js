@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     start.addEventListener('click', () => {
         setInterval(() => {
-            if (Math.random() < 0.4) {
+            if (Math.random() < 0.6) {
                 let bubble = new Bubble({
                     position: {
                         x: Math.random() * (1100 - 200) + 200,
@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (game.enemies.length === 0) {
             gameMusic.pause();
             alert('You Won!');
+            let game = new Game(canvas, ctx);
+            gameMusic.play();
         }
         
         // missile.update();
