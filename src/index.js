@@ -1,5 +1,5 @@
 import Game from './scripts/game';
-import Heart from './scripts/heart';
+import Missile from './scripts/missile';
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -9,7 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext('2d');
 
     let game = new Game(canvas, ctx);
-    
+    let missile = new Missile({
+        position: {
+            x: 300,
+            y: 300
+        },
+        ctx: ctx
+    });
+
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -19,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // PROMPT USER WITH A SCREEN ASKING THEM IF THEY WOULD LIKE TO PLAY AGAIN 
             console.log('ouch');
         }
-    
+        missile.update();
         game.update();
         if (game.player.missile && !game.player.missile.reseted) {
             game.player.missile.update();

@@ -1,6 +1,9 @@
-export default class Missile {
+import Sprite from "./sprite";
+import fire from "../img/fire.png";
+
+export default class Missile extends Sprite {
     constructor({position, ctx}) {
-        this.position = position;
+        super({position, imageSrc: fire, ctx, framesMax: 4})
         this.velocity = 9;
         this.hit = false;
         this.reseted = false;
@@ -10,12 +13,13 @@ export default class Missile {
     }
 
     draw() {
-        this.ctx.fillStyle = 'yellow';
-        this.ctx.fillRect(
-            this.position.x,
-            this.position.y,
-            this.width,
-            this.height);
+        // this.ctx.fillStyle = 'yellow';
+        // this.ctx.fillRect(
+        //     this.position.x,
+        //     this.position.y,
+        //     this.width,
+        //     this.height);
+        this.updateHorizontal();
     }
 
 

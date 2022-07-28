@@ -16,8 +16,7 @@ export default class Game {
     }
 
     isGameOver() {
-        // return this.player.gameOver() || this.timer.timeUp();
-        return this.timer.timeUp();
+        return this.player.gameOver() || this.timer.timeUp();
     }
 
     update() {

@@ -18,7 +18,13 @@ export default class Player extends Sprite {
             offset
         })
         
-        this.sprites = sprites
+        this.seconds = 0;
+        let that = this;
+        setInterval(() => {
+            that.seconds += 1;
+        }, 1000);
+
+        this.sprites = sprites;
         this.velocity = 50;
         this.missile = null;
         this.height = 50;
@@ -98,7 +104,8 @@ export default class Player extends Sprite {
         if (ball.position.x - ball.radius <= this.position.x + this.width &&
             this.position.x <= ball.position.x + ball.radius &&
             ball.position.y + ball.radius <= this.position.y + this.height &&
-            this.position.y <= ball.position.y + ball.radius) {
+            this.position.y <= ball.position.y + ball.radius && this.seconds >= 1) {
+            this.seconds = 0;
             this.lives.pop();
             return true; 
         } else {
