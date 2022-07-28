@@ -1,5 +1,3 @@
-Add lifebar 
-Add timer 
 Add sound effects 
 Add winning game logic 
-Add player sprite 
+Fix collision detection for enemy sprites and player 
