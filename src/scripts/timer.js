@@ -14,7 +14,7 @@ export default class Timer {
     update() {
         this.draw();
         if (this.width > 0) {
-            this.width -= 0.25;
+            this.width -= 0.36;
         }
     }
 
