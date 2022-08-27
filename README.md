@@ -1,5 +1,5 @@
 # Froggy-Bash
-Check out the site here: https://shenshuu.github.io/Bubble-Trouble/ 
+## [Check out the game here](https://shenshuu.github.io/Froggy-Bash/)
 
 ## **Background**
 Bubble Trouble is a 2D shooter that was first introduced in the formerly popular flash games website, Miniclip.com. 
