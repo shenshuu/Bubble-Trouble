@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const startScreen = document.querySelector('.modal');
     const restart = document.querySelector('.restart-btn');
     const restartScreen = document.querySelector('.restart-modal');
+    const win = document.querySelector('.win-btn');
+    const winScreen = document.querySelector('.win-modal');
     let game = new Game(canvas, ctx);
     let toggleSound = document.querySelector('.sound');
     let soundPlaying;
@@ -35,9 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
         gameMusic.play();
     });
 
+    win.addEventListener('click', () => {
+        winScreen.classList.add('hidden');
+        game = new Game(canvas, ctx);
+        gameMusic.play();
+    });
+
     start.addEventListener('click', () => {
         setInterval(() => {
-            if (Math.random() < 0.6) {
+            if (Math.random() < 0.6 && game.enemies.length > 0) {
                 let bubble = new Bubble({
                     position: {
                         x: Math.random() * canvas.width,
@@ -54,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 game.enemies.push(bubble);
             }
-        }, 6000)
+        }, 100000)
         
         startScreen.classList.add('hidden');
         gameMusic.play();
@@ -82,8 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
             game.player.missile = null;
         }
 
-        for (let enemy of game.enemies) {
+        if (game.enemies.length === 0) {
+            gameMusic.pause();
+            winScreen.classList.remove('hidden');
+            return;
+        }
 
+        for (let enemy of game.enemies) {
+            
             if (enemy.velocity.x <= 0) {
                 enemy.image = enemy.sprites.frogLeft.image; 
                 enemy.offset = {

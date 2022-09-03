@@ -71,22 +71,31 @@
         </div>
 
         <div style="position: absolute; 
-        margin-top: 2%;
-        border-radius: 15px;
-        opacity: 0.75;"
-        class="sound">
-          <!-- <i class="fa-solid fa-volume"></i> -->
-          <div class="sound-icon"><i class="fa-solid fa-volume-high"></i></div>
-        </div>
-
-        <!-- <div style="position: absolute; 
         background-color: white; 
         margin-top: 2%;
         border-radius: 15px;
         opacity: 0.75;
-        " class="restart">
-        <h1>foo</h1>
-        </div> -->
+        " class="win-modal hidden">
+          <div class="instructions">
+            <p>
+              Congratulations, You beat the game! Would you like to play again?
+            </p>
+          </div>
+          <div class="start-btn win-btn">
+            <button>Play again</button>
+          </div>
+        </div>
+        
+
+        <div style="position: absolute; 
+        margin-top: 2%;
+        border-radius: 15px;
+        opacity: 0.75;"
+        class="sound">
+          <div class="sound-icon"><i class="fa-solid fa-volume-high"></i></div>
+        </div>
+
+        
 
         <canvas class="game-canvas"></canvas>
         <img src="./src/img/background.png" alt="background" id="background">

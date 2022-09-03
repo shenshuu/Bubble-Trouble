@@ -77,7 +77,7 @@ export default class Player extends Sprite {
         for (let heart of this.lives) {
             heart.updateHorizontal();
         }
-        this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+        // this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
         this.drawVerticalSpriteSheet();
         this.animateFrames();
 
