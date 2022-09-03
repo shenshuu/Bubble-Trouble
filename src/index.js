@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     restart.addEventListener('click', () => {
         restartScreen.classList.add('hidden');
         game = new Game(canvas, ctx);
-        gameMusic.play();
+        if (soundPlaying) gameMusic.play();
     });
 
     win.addEventListener('click', () => {
         winScreen.classList.add('hidden');
         game = new Game(canvas, ctx);
-        gameMusic.play();
+        if (soundPlaying) gameMusic.play();
     });
 
     start.addEventListener('click', () => {
