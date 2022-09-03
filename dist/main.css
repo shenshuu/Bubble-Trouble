@@ -49,6 +49,11 @@ body {
   width: 100vw;
 }
 
+.game-canvas {
+  width: 80%;
+  height: 80%;
+}
+
 .footer {
   display: flex;
 }
@@ -138,7 +143,13 @@ html, body {
   flex-direction: column;
   gap: 16px;
   padding: 24px;
-  z-index: 10000;
+  z-index: 10;
+  width: 50%;
+}
+
+.instructions {
+  line-height: 25px;
+  display: flex;
 }
 
 .modal .start-btn {
@@ -147,7 +158,9 @@ html, body {
 }
 
 .start-btn button {
-  padding: 8px 12px 8px 12px;
+  padding: 8px 16px;
+  font-family: "Press Start 2P", cursive;
+  border-radius: 10px;
   opacity: 0.8;
 }
 
@@ -158,6 +171,20 @@ html, body {
 
 .sound {
   margin-left: 70%;
+  z-index: 100;
+}
+
+.sound:hover {
+  transform: scale(1.1);
+  transition: 100ms;
+  cursor: pointer;
+}
+
+.sound-icon {
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  color: #d8e5e9;
 }
 
 .top h1 {
@@ -166,4 +193,13 @@ html, body {
 
 .footer {
   font-family: "Press Start 2P", cursive;
+}
+
+.hidden {
+  display: none;
+}
+
+.left.toggled, .right.toggled, .up.toggled {
+  transform: scale(1.2);
+  transition: 100ms;
 }

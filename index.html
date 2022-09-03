@@ -10,7 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/17501655c9.js" crossorigin="anonymous"></script>
-    <script src="./dist/main.js"></script>
+    <script src="./dist/main.js" defer></script>
+    <link rel="icon" href="./src/images/frog_idle.png" sizes="32x32" type="image/png">
     <title>Froggy Bash 🐸</title>
   </head>
 
@@ -24,8 +25,8 @@
         <div class="top">
           <h1>Froggy Bash</h1>
           <ul>
-            <li><a href="#"><i class="fa-brands fa-square-github fa-2xl"></i></a></li>
-            <li><a href="#"><i class="fa-brands fa-linkedin fa-2xl"></i></a></li>
+            <li><a href="https://github.com/shenshuu"><i class="fa-brands fa-square-github fa-2xl"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/michael-s-b7698b239/"><i class="fa-brands fa-linkedin fa-2xl"></i></a></li>
             <li><a href="#"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
           </ul>
         </div>
@@ -41,9 +42,11 @@
           <h1>How to play</h1>
           <div class="instructions">
             <p>
-              Use "AD" to move left or right and "L" to shoot projectile <br>
-              streams! Your mission is to destroy all the frogs on the<br>
-              map before the timer runs out without losing all of your lives. 
+              Use "AD" to move left or right and "L" to shoot projectile
+              streams! Your mission is to destroy all the frogs on the
+              map before the timer runs out without losing all of your lives.
+              (The number of lives you have is displayed on the bottom left of 
+              the screen.) 
             </p>
           </div>
           <div class="start-btn">
@@ -57,7 +60,7 @@
         opacity: 0.75;"
         class="sound">
           <!-- <i class="fa-solid fa-volume"></i> -->
-          <i class='fas fa-volume-up' id="sound-icon" style='font-size:36px; color: "white";'></i>
+          <div class="sound-icon"><i class="fa-solid fa-volume-high"></i></div>
         </div>
 
         <!-- <div style="position: absolute; 
@@ -80,7 +83,7 @@
           <div class="right">D</div>
         </div>
         <div class="author-note">
-          <p>AN INTERACTIVE BALL GAME</p>
+          <p>AN INTERACTIVE FROG GAME</p>
           <p>by Michael Shen</p>
         </div>
         <div class="attack">

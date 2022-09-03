@@ -2,13 +2,18 @@ import Missile from "./missile";
 import Sprite from "./sprite";
 import Heart from "./heart";
 
+const left = document.querySelector('.left');
+const right = document.querySelector('.right');
+const up = document.querySelector('.up');
+
 export default class Player extends Sprite {
     constructor({
         position, 
         ctx, imageSrc, 
         scale = 1, framesMax = 1, 
         offset = {x: 0, y: 0},
-        sprites
+        sprites,
+        canvas
     }) {
         super({
             position,
@@ -24,50 +29,25 @@ export default class Player extends Sprite {
             that.seconds += 0.1;
         }, 100);
 
+        this.canvas = canvas;
         this.sprites = sprites;
-        this.velocity = 50;
+        this.velocity = 10;
         this.missile = null;
-        this.height = 50;
-        this.width = 35;
+        this.height = this.canvas.height / 8;
+        this.width = this.canvas.width / 30;
         this.lastKey = "";
-        this.lives = [
-            new Heart({
-                position: {
-                    x: 150,
-                    y: 540
-                },
-                ctx: ctx}),
-            new Heart({
-                position: {
-                    x: 180,
-                    y: 540
-                },
-                ctx: ctx}),
-            new Heart({
-                position: {
-                    x: 210,
-                    y: 540
-                },
-                ctx: ctx}),
-            new Heart({
-                position: {
-                    x: 240,
-                    y: 540
-                },
-                ctx: ctx}),
-            new Heart({
-                position: {
-                    x: 270,
-                    y: 540
-                },
-                ctx: ctx}),
-            new Heart({
-                position: {
-                    x: 300,
-                    y: 540
-                },
-                ctx: ctx})
-        ];
+        this.lives = [];
+        for (let i = 0; i < 6; i++) {
+            this.lives.push(
+                new Heart({
+                    position: {
+                    x: i*10,
+                    y: 142,
+                    },
+                    ctx: ctx,
+                })
+            )
+        }
         this.ctx = ctx;
 
         for (const sprite in this.sprites) {
@@ -97,11 +77,12 @@ export default class Player extends Sprite {
         for (let heart of this.lives) {
             heart.updateHorizontal();
         }
+        this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
         this.drawVerticalSpriteSheet();
         this.animateFrames();
 
-        if (this.position.x + this.velocity >= window.innerWidth - 195 ||
-            this.position.x + this.velocity <= 145) 
+        if (this.position.x + this.velocity >= this.canvas.width - this.width ||
+            this.position.x + this.velocity <= 0) 
             this.velocity = 0;
         this.position.x += this.velocity;
     }
@@ -113,6 +94,7 @@ export default class Player extends Sprite {
                     x: x_,
                     y: y_ 
                 },
+                canvas: this.canvas,
                 ctx: this.ctx
             })
         }
@@ -141,14 +123,17 @@ export default class Player extends Sprite {
             switch(event.key) {
                 case 'd': 
                     that.keys.d.pressed = true;
+                    right.classList.add('toggled');
                     that.lastKey = 'd';
                     break;
                 case 'a':
                     that.keys.a.pressed = true;
+                    left.classList.add('toggled');
                     that.lastKey = 'a';
                     break;
                 case 'l':
                     that.keys.l.pressed = true;
+                    up.classList.add('toggled');
                     that.attack(
                         that.position.x + that.width / 2,
                         that.position.y + that.height
@@ -156,14 +141,17 @@ export default class Player extends Sprite {
                     break;
                 case 'ArrowLeft':
                     that.keys.ArrowLeft.pressed = true;
+                    left.classList.add('toggled');
                     that.lastKey = 'ArrowLeft';
                     break;
                 case 'ArrowRight':
                     that.keys.ArrowRight.pressed = true;
+                    right.classList.add('toggled');
                     that.lastKey = 'ArrowRight';
                     break;
                 case 'ArrowUp':
                     that.keys.ArrowUp.pressed = true;
+                    up.classList.add('toggled');
                     that.attack(
                         that.position.x,
                         that.position.y
@@ -176,21 +164,27 @@ export default class Player extends Sprite {
             switch (event.key) {
                 case 'a':
                     that.keys.a.pressed = false;
+                    left.classList.remove('toggled');
                     break;
                 case 'd':
                     that.keys.d.pressed = false;
+                    right.classList.remove('toggled');
                     break;
                 case 'l':
                     that.keys.l.pressed = false;
+                    up.classList.remove('toggled');
                     break;
                 case 'ArrowLeft':
                     that.keys.ArrowLeft.pressed = false;
+                    left.classList.remove('toggled');
                     break;
                 case 'ArrowRight':
                     that.keys.ArrowRight.pressed = false;
+                    right.classList.remove('toggled');
                     break;
                 case 'ArrowUp':
                     that.keys.ArrowUp.pressed = false;
+                    up.classList.remove('toggled');
                     break;
             }
         })

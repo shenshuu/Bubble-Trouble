@@ -2,13 +2,14 @@ import Sprite from "./sprite";
 import fire from "../img/fire.png";
 
 export default class Missile extends Sprite {
-    constructor({position, ctx}) {
-        super({position, imageSrc: fire, ctx, framesMax: 4})
-        this.velocity = 9;
+    constructor({position, ctx, canvas}) {
+        super({position, imageSrc: fire, ctx, framesMax: 4});
+        this.canvas = canvas;
+        this.velocity = 3;
         this.hit = false;
         this.reseted = false;
         this.height = 5;
-        this.width = 5;
+        this.width = 2.5;
         this.ctx = ctx;
     }
 
@@ -25,7 +26,8 @@ export default class Missile extends Sprite {
 
     update() {
         this.draw();
-        if (this.position.y <= 50 || this.hit) {
+        if (this.height >= 200 || this.hit) {
+            debugger;
             this.reseted = true;
         }
         this.height += this.velocity;

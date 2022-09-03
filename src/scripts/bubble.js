@@ -3,7 +3,7 @@ import frogRight from '../img/frog_idle.png';
 import frogLeft from '../img/frog_idle_left.png';
 
 export default class Bubble extends Sprite {
-    constructor({position, velocity, sprites, radius, ctx}) {
+    constructor({position, velocity, sprites, radius, ctx, canvas}) {
         let faceRightOffset = {
             x: radius * 3.3, 
             y: radius * 6
@@ -28,9 +28,10 @@ export default class Bubble extends Sprite {
             framesMax: 4,
             offset
         })
+        this.canvas = canvas;
         this.sprites = sprites;
         this.velocity = velocity;
-        this.gravity = 0.5;
+        this.gravity = 0.2;
         this.radius = radius;
         this.children = [];
 
@@ -46,27 +47,28 @@ export default class Bubble extends Sprite {
 
     draw() {
         // USE CIRCLES FOR DEBUGGING;
-        // this.ctx.fillStyle = 'yellow';
-        // this.ctx.strokeStyle = 'black';
-        // this.ctx.lineWidth = 5;
-        // this.ctx.beginPath();
-        // this.ctx.arc(
-        //     this.position.x, 
-        //     this.position.y,
-        //     this.radius, 0, 2*Math.PI
-        // )
-        // this.ctx.stroke();
-        // this.ctx.fill();
+        this.ctx.fillStyle = 'yellow';
+        this.ctx.strokeStyle = 'black';
+        this.ctx.lineWidth = 5;
+        this.ctx.beginPath();
+        this.ctx.arc(
+            this.position.x, 
+            this.position.y,
+            this.radius, 0, 2*Math.PI
+        )
+        this.ctx.stroke();
+        this.ctx.fill();
         this.updateHorizontal();
         
     }
 
     update() {
-        if (this.position.x + this.radius >= window.innerWidth - 142 ||
-            this.position.x - this.radius <= 140) {
+        // debugger;
+        if (this.position.x + this.radius >= this.canvas.width ||
+            this.position.x - this.radius <= 0) {
             this.velocity.x = -this.velocity.x;
         }
-        if (this.position.y + this.radius >= window.innerHeight - 190) {
+        if (this.position.y + this.radius >= this.canvas.height - 15) {
             this.velocity.y = -this.velocity.y;
         } else {
             this.velocity.y += this.gravity;
@@ -78,7 +80,7 @@ export default class Bubble extends Sprite {
     }
 
     split() {
-        if (this.radius >= 20) {
+        if (this.radius >= 5) {
             let b1 = new Bubble({
                 position: {
                     x: this.position.x - 25,
@@ -90,7 +92,8 @@ export default class Bubble extends Sprite {
                 },
                 radius: this.radius / 1.5,
                 ctx: this.ctx,
-                sprites: this.sprites
+                sprites: this.sprites,
+                canvas: this.canvas,
             })
             let b2 = new Bubble({
                 position: {
@@ -103,7 +106,8 @@ export default class Bubble extends Sprite {
                 },
                 radius: this.radius / 1.5,
                 ctx: this.ctx,
-                sprites: this.sprites 
+                sprites: this.sprites,
+                canvas: this.canvas,
             })
             this.children.push(...[b1, b2]);
         }

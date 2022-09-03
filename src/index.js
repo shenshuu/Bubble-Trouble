@@ -4,37 +4,53 @@ import Game from './scripts/game';
 document.addEventListener("DOMContentLoaded", () => {
     
     const canvas = document.querySelector('.game-canvas');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
     const gameMusic = document.querySelector('.game-music');
 
     const start = document.querySelector('.start-btn button');
-    const startScreen = document.getElementsByClassName('modal');
+    const startScreen = document.querySelector('.modal');
     let game = new Game(canvas, ctx);
-    
+    let toggleSound = document.querySelector('.sound');
+    let soundPlaying;
+
+    toggleSound.addEventListener('click', () => {
+        if (soundPlaying) {
+            gameMusic.pause();
+            soundPlaying = false;
+            toggleSound.removeChild(toggleSound.children[0]);
+            toggleSound.innerHTML = '<div class="sound-icon"><i class="fa-solid fa-volume-off"></i></div>';
+        } else {
+            gameMusic.play();
+            soundPlaying = true;
+            toggleSound.removeChild(toggleSound.children[0]);
+            toggleSound.innerHTML = '<div class="sound-icon"><i class="fa-solid fa-volume-high"></i></div>';
+        }
+    });
+
     start.addEventListener('click', () => {
         setInterval(() => {
             if (Math.random() < 0.6) {
                 let bubble = new Bubble({
                     position: {
-                        x: Math.random() * (1100 - 200) + 200,
-                        y: 200, 
+                        x: Math.random() * canvas.width,
+                        y: 30, 
                     },
                     velocity: {
-                        x: (Math.random() < 0.5) ? -3 : 3, 
-                        y: Math.random() * (5 - 3) + 3,
+                        x: (Math.random() < 0.5) ? -1.5 : 1.5, 
+                        y: Math.random() + 1.7,
                     },
-                    radius: Math.random() * (40 - 15) + 15,
+                    radius: Math.random() * (15-5) + 5,
                     ctx: ctx,
                     sprites: game.enemies[0].sprites,
+                    canvas: canvas,
                 });
                 game.enemies.push(bubble);
             }
         }, 6000)
         
-        startScreen[0].style.zIndex = -10000;
+        startScreen.classList.add('hidden');
         gameMusic.play();
+        soundPlaying = true;
         animate();
     });
     
@@ -55,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
             game.player.missile.update();
         }
 
-         if (game.player.missile && game.player.missile.position.y <= 50) {
+         if (game.player.missile && game.player.missile.position.y <= 2.5) {
             game.player.missile = null;
         }
 
@@ -104,12 +120,12 @@ document.addEventListener("DOMContentLoaded", () => {
         game.player.keys.ArrowLeft.pressed && game.player.lastKey === 'ArrowLeft') {
             game.player.image = game.player.sprites.runLeft.image;
             game.player.framesMax = 10;
-            game.player.velocity = -3.2;
+            game.player.velocity = -1.55;
         } else if (game.player.keys.d.pressed && game.player.lastKey === 'd' ||
         game.player.keys.ArrowRight.pressed && game.player.lastKey === 'ArrowRight') {
             game.player.image = game.player.sprites.runRight.image;
             game.player.framesMax = 10;
-            game.player.velocity = 3.2;
+            game.player.velocity = 1.55;
         } 
     }
 

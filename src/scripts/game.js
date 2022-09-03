@@ -11,7 +11,7 @@ import frogIdleRight from '../img/frog_idle.png';
 
 export default class Game {
     constructor(canvas, ctx) {
-        this.timer = new Timer(ctx)
+        this.timer = new Timer(ctx, canvas);
         this.canvas = canvas;
         this.ctx = ctx;
         this.initGameObjects();
@@ -30,15 +30,15 @@ export default class Game {
         this.player = new Player({
             position: {
                 x: 100,
-                y: 435
+                y: this.canvas.height - 30,
             },
             ctx: this.ctx,
             imageSrc: idleRight,
             framesMax: 6,
-            scale: 2.4,
+            scale: 0.8,
             offset: {
-                x: 12,
-                y: -22
+                x: 8,
+                y: 4,
             },
             sprites: {
                 idleRight: {
@@ -57,19 +57,20 @@ export default class Game {
                     imageSrc: runLeft,
                     framesMax: 10
                 }
-            }
+            },
+            canvas: this.canvas,
         });
     
         let enemy1 = new Bubble({
             position: {
-                x: 450,
-                y: 200, 
+                x: 200,
+                y: 30, 
             },
             velocity: {
-                x: 3, 
-                y: 5,
+                x: 1.5, 
+                y: 1.4,
             },
-            radius: 30,
+            radius: 10,
             ctx: this.ctx,
             sprites: {
                 frogLeft: {
@@ -80,19 +81,20 @@ export default class Game {
                     imageSrc: frogIdleRight,
                     framesMax: 4
                 }
-            }
+            },
+            canvas: this.canvas,
         });
     
         let enemy2 = new Bubble({
             position: {
-                x: 1000,
-                y: 200, 
+                x: 100,
+                y: 30, 
             },
             velocity: {
-                x: -3, 
-                y: 5,
+                x: -1.5, 
+                y: 1.4,
             },
-            radius: 30,
+            radius: 10,
             ctx: this.ctx,
             sprites: {
                 frogLeft: {
@@ -103,7 +105,8 @@ export default class Game {
                     imageSrc: frogIdleRight,
                     framesMax: 4
                 }
-            }
+            },
+            canvas: this.canvas,
         });
 
         this.enemies = [enemy1, enemy2];
