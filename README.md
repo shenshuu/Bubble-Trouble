@@ -5,23 +5,19 @@
 Bubble Trouble is a 2D shooter that was first introduced in the formerly popular flash games website, Miniclip.com. 
 The rules of Bubble Trouble are quite simple. There are multiple levels in the game, each with a timer and a fixed number
 of bubbles. During gameplay, the bubbles in each level bounce around the room and split into two smaller bubbles if 
-the player manages to attack them. The bubbles eventually disapear when they get small enough. The player beats a level if 
-they manage to pop all the bubbles before the timer in the level runs out without getting hit. 
+the player manages to attack them. The bubbles then eventually disapear when they get small enough.
 
-
-Froggy Bash is a game I created that is heavily inspired by Bubble Trouble. The premise of the game is quite similiar to 
-Bubble Trouble but with my own personal twist. Instead of having fixed bubbles at certain points for levels, the game 
-will randomly spawn frogs of random sizes every 7 seconds with a 60% probability. The player wins the game by wiping 
-out all the frogs on the map before the timer runs out without losing all of their lives. 
+Froggy Bash is a game I created that is inspired by Bubble Trouble. The premise of the game is quite similiar but with my own personal twist. Instead of having fixed bubbles at certain points for levels, the game will randomly spawn frogs of random sizes every 7 seconds with a 60% probability. Players can win the game by wiping out all the frogs on the map before the timer runs out without losing all of their lives. 
 
 
 ## **Functionality & MVPs**
 With Froggy Bash, users will be able to:
 
-*Move left and right with character*
-*Play/pause game music*
-*Shoot projectiles*
-*Interact with frogs by shooting them*
+* Move left and right with character
+* Collide with other game entities
+* Play and pause game music
+* Shoot projectiles
+* Interact with frogs by shooting them
 
 In addition, this project will include:
 
