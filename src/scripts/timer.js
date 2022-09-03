@@ -20,6 +20,6 @@ export default class Timer {
     }
 
     timeUp() {
-        return this.width === 0;
+        return this.width <= 0;
     }
 }

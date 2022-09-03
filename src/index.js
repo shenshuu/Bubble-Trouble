@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const start = document.querySelector('.start-btn button');
     const startScreen = document.querySelector('.modal');
+    const restart = document.querySelector('.restart-btn');
+    const restartScreen = document.querySelector('.restart-modal');
     let game = new Game(canvas, ctx);
     let toggleSound = document.querySelector('.sound');
     let soundPlaying;
@@ -27,6 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    restart.addEventListener('click', () => {
+        restartScreen.classList.add('hidden');
+        game = new Game(canvas, ctx);
+        gameMusic.play();
+    });
+
     start.addEventListener('click', () => {
         setInterval(() => {
             if (Math.random() < 0.6) {
@@ -39,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         x: (Math.random() < 0.5) ? -1.5 : 1.5, 
                         y: Math.random() + 1.7,
                     },
-                    radius: Math.random() * (15-5) + 5,
+                    radius: Math.random() * (10-5) + 5,
                     ctx: ctx,
                     sprites: game.enemies[0].sprites,
                     canvas: canvas,
@@ -61,9 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (game.isGameOver()) {
             gameMusic.pause();
-            alert('Would you like to play again?');
-            game = new Game(canvas, ctx);
-            gameMusic.play();
+            restartScreen.classList.remove('hidden');
+            return;
         }
 
         game.update();

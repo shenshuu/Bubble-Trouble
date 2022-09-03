@@ -137,7 +137,7 @@ html, body {
   overflow: hidden;
 }
 
-.modal {
+.modal, .restart-modal {
   font-family: "Press Start 2P", cursive;
   display: flex;
   flex-direction: column;
