@@ -200,3 +200,8 @@ html, body {
     transform: scale(1.2);
     transition: 100ms;
 }
+
+.start-btn.win-btn {
+    display: flex;
+    column-gap: 10px;
+}

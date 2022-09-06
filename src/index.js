@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const restartScreen = document.querySelector('.restart-modal');
     const win = document.querySelector('.win-btn');
     const winScreen = document.querySelector('.win-modal');
+    const spicyButton = document.querySelector('.spicy-btn');
+
+    let interval;
+
     let game = new Game(canvas, ctx);
     let toggleSound = document.querySelector('.sound');
     let soundPlaying;
@@ -34,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     restart.addEventListener('click', () => {
         restartScreen.classList.add('hidden');
         game = new Game(canvas, ctx);
+        clearInterval(interval);
         if (soundPlaying) gameMusic.play();
     });
 
@@ -44,7 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     start.addEventListener('click', () => {
-        setInterval(() => {
+        startScreen.classList.add('hidden');
+        gameMusic.play();
+        soundPlaying = true;
+        animate();
+    });
+
+    spicyButton.addEventListener('click', () => {
+        game = new Game(canvas, ctx);
+        interval = setInterval(() => {
             if (Math.random() < 0.6 && game.enemies.length > 0) {
                 let bubble = new Bubble({
                     position: {
@@ -62,14 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 game.enemies.push(bubble);
             }
-        }, 100000)
-        
-        startScreen.classList.add('hidden');
-        gameMusic.play();
-        soundPlaying = true;
-        animate();
+        }, 10);
     });
-    
 
     function animate() {
         window.requestAnimationFrame(animate);
@@ -77,7 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (game.isGameOver()) {
             gameMusic.pause();
+            clearInterval(interval);
             restartScreen.classList.remove('hidden');
+            return;
+        }
+
+        if (game.enemies.length === 0) {
+            gameMusic.pause();
+            clearInterval(interval)
+            winScreen.classList.remove('hidden');
             return;
         }
 
@@ -88,12 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
          if (game.player.missile && game.player.missile.position.y <= 2.5) {
             game.player.missile = null;
-        }
-
-        if (game.enemies.length === 0) {
-            gameMusic.pause();
-            winScreen.classList.remove('hidden');
-            return;
         }
 
         for (let enemy of game.enemies) {
@@ -113,9 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             enemy.update();
-            if (game.player.killedBy(enemy)) {
-                console.log('dead');
-            }
+            game.player.killedBy(enemy);
 
             if (game.player.missile && game.player.missile.collided(enemy)) {
                 game.player.missile = null;

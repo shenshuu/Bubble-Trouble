@@ -37,7 +37,7 @@ export default class Player extends Sprite {
         this.width = this.canvas.width / 30;
         this.lastKey = "";
         this.lives = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 1; i++) {
             this.lives.push(
                 new Heart({
                     position: {
