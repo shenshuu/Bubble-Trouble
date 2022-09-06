@@ -14,7 +14,7 @@ export default class Missile extends Sprite {
     }
 
     draw() {
-        this.ctx.fillStyle = 'yellow';
+        this.ctx.fillStyle = '#d9e6eb';
         this.ctx.fillRect(
             this.position.x,
             this.position.y,

@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 game.enemies.push(bubble);
             }
-        }, 10);
+        }, 5000);
     });
 
     function animate() {
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (game.enemies.length === 0) {
             gameMusic.pause();
-            clearInterval(interval)
+            clearInterval(interval);
             winScreen.classList.remove('hidden');
             return;
         }
