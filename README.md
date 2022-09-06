@@ -7,8 +7,9 @@ The rules of Bubble Trouble are quite simple. There are multiple levels in the g
 of bubbles. During gameplay, the bubbles in each level bounce around the room and split into two smaller bubbles if 
 the player manages to attack them. The bubbles then eventually disapear when they get small enough.
 
-Froggy Bash is a game I created that is inspired by Bubble Trouble. The premise of the game is quite similiar but with my own personal twist. Instead of having fixed bubbles at certain points for levels, the game will randomly spawn frogs of random sizes every 7 seconds with a 60% probability. Players can win the game by wiping out all the frogs on the map before the timer runs out without losing all of their lives. 
+Froggy Bash is a game I created that is inspired by Bubble Trouble. In order to win, the player must wipe out all the frogs on the map before the timer ends without getting hit. Upon winning the game, the player will have a choice to make the game "spicy" by randomly spawning frogs of random sizes every 7 seconds with a 60% probability. 
 
+![Alt Text](https://github.com/shenshuu/Froggy-Bash/blob/main/src/gifs/2022-09-06%2016.03.29.gif)
 
 ## **Functionality & MVPs**
 With Froggy Bash, users will be able to:
@@ -19,36 +20,41 @@ With Froggy Bash, users will be able to:
 * Shoot projectiles
 * Interact with frogs by shooting them
 
-In addition, this project will include:
+## **Code Snippets**
+To handle the enemy multiplication algorithm, I devised a splitting algorithm where two new enemies get pushed into an array that stores all the enemies still alive in the current game state. The size of the new enemies are then determined by multiplying the destroyed enemy's size by a constanct factor c where ```c = 1 / 1.5```.
+```js
+split() {
+        if (this.radius >= 5) {
+            let e1 = new Enemy({
+                position: {
+                    x: this.position.x - 25,
+                    y: this.position.y
+                },
+                velocity: {
+                    x: this.velocity.x - 0.25,
+                    y: this.velocity.y - 0.25
+                },
+                radius: this.radius / 1.5,
+                ctx: this.ctx,
+                sprites: this.sprites,
+                canvas: this.canvas,
+            })
+            let e2 = new Enemy({
+                position: {
+                    x: this.position.x + 25,
+                    y: this.position.y
+                },
+                velocity: {
+                    x: -(this.velocity.x + 0.25),
+                    y: this.velocity.y - 0.25
+                },
+                radius: this.radius / 1.5,
+                ctx: this.ctx,
+                sprites: this.sprites,
+                canvas: this.canvas,
+            })
+            this.children.push(...[e1, e2]);
+}
 
-*An About modal describing the background and rules of the game*
-*A production README*
+```
 
-## **Wireframes**
-<img width="1025" alt="Screen Shot 2022-07-28 at 2 44 08 PM" src="https://user-images.githubusercontent.com/101607500/181614529-c344f6c4-ad7d-45d1-8d3d-0e8dccb51387.png">
-
-**Wireframe**
-
-Nav links include links to this project's Github repo, my LinkedIn, and the About modal.
-Game controls will include Left, Right, and Attack buttons.
-
-## **Technologies, Libraries, APIs**
-This project will be implemented with the following technologies:
-
-The Canvas API to render the player, enemies, and map 
-Webpack and Babel to bundle and transpile the source JavaScript code
-npm to manage project dependencies
-Implementation Timeline
-
-NB:
-
-Monday: Dedicate this day toward implementing the underlying logic of Froggy Bash. Ensure that game objects are rendering and collisions are being detected. 
-
-Tuesday: If I didn't get to it already, add sprites for game objects. Make sure user projectiles detect collision with frogs. Then, focus on multiplying frogs upon projectile collision.
-
-Wednesday: Finish implementing user controls, game logic and focus on styling, as well as implementing the different color schemes and nav links. If time, start on bonuses.
-
-Thursday Morning: Deploy to GitHub pages. If time, rewrite this proposal as a production README.
-
-## **Bonus features**
-Animation for player projectile 
