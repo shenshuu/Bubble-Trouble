@@ -16,13 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const spicyButton = document.querySelector('.spicy-btn');
     const instructions = document.querySelector('#instructions-nav');
 
+    var gameStarted = false;
+
     instructions.addEventListener('mouseover', () => {
-        startScreen.classList.remove('hidden');
-        start.classList.add('hidden');
+        if (gameStarted) {
+            startScreen.classList.remove('hidden');
+            start.classList.add('hidden');
+        }
     });
 
     instructions.addEventListener('mouseout', () => {
-        startScreen.classList.add('hidden');
+        if (gameStarted) {
+            startScreen.classList.add('hidden');
+        }
     });
 
     let interval;
@@ -91,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function animate() {
         window.requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        gameStarted = true;
 
         if (game.isGameOver()) {
             gameMusic.pause();
