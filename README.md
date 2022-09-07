@@ -75,46 +75,41 @@ collided(ball) {
 
 One of the biggest challenges of this project was coming up with a way to allow the user to have exactly one projectile in the game state at a time. Through the use of null checks, I was able to incorporate the Singleton pattern for projectiles using null checks, effectively disabling the player from spamming the attack button. 
 ```js 
-    initPlayerInput() {
-        let that = this;
-        window.addEventListener('keydown', (event) => {
-            switch(event.key) {
-                case 'd': 
-                    that.keys.d.pressed = true;
-                    right.classList.add('toggled');
-                    that.lastKey = 'd';
-                    break;
-                case 'a':
-                    that.keys.a.pressed = true;
-                    left.classList.add('toggled');
-                    that.lastKey = 'a';
-                    break;
-                case 'l':
-                    that.keys.l.pressed = true;
-                    up.classList.add('toggled');
-                    that.attack(
-                        that.position.x + that.width / 2,
-                        that.position.y + that.height
-                    );
-                    break;
-                case 'ArrowLeft':
-                    that.keys.ArrowLeft.pressed = true;
-                    left.classList.add('toggled');
-                    that.lastKey = 'ArrowLeft';
-                    break;
-                case 'ArrowRight':
-                    that.keys.ArrowRight.pressed = true;
-                    right.classList.add('toggled');
-                    that.lastKey = 'ArrowRight';
-                    break;
-                case 'ArrowUp':
-                    that.keys.ArrowUp.pressed = true;
-                    up.classList.add('toggled');
-                    that.attack(
-                        that.position.x,
-                        that.position.y
-                    );
-                    break;
+if (game.player.missile && !game.player.missile.reseted) {
+            game.player.missile.update();
+        }
+
+         if (game.player.missile && game.player.missile.position.y <= 2.5) {
+            game.player.missile = null;
+        }
+
+        for (let enemy of game.enemies) {
+            
+            if (enemy.velocity.x <= 0) {
+                enemy.image = enemy.sprites.frogLeft.image; 
+                enemy.offset = {
+                    x: enemy.radius * 5,
+                    y: enemy.radius * 6
+                };
+            } else {
+                enemy.image = enemy.sprites.frogRight.image;
+                enemy.offset = {
+                    x: enemy.radius * 3.3, 
+                    y: enemy.radius * 6
+                };
             }
-})
+
+            enemy.update();
+
+            if (game.player.missile && game.player.missile.collided(enemy)) {
+                game.player.missile = null;
+                if (enemy.children.length === 0) {
+                    enemy.split();
+                    for (let child of enemy.children) {
+                        game.enemies.push(child);
+                    }
+                    game.enemies = game.enemies.filter((e) => e !== enemy);
+                }
+            }
+        }
 ```
