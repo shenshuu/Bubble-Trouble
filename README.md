@@ -60,11 +60,11 @@ split() {
 
 To check for projectile collision, I calculated and checked if the hit boxes for both the projectile and enemy were within a specific threshold. This simple function allowed for the core game functionality to be possible.
 ```js 
-collided(ball) {
-        if (ball.position.x - ball.radius <= this.position.x + this.width &&
-            this.position.x <= ball.position.x + ball.radius &&
-            ball.position.y + ball.radius <= this.position.y + this.height &&
-            this.position.y <= ball.position.y + ball.radius) {
+collided(enemy) {
+        if (enemy.position.x - enemy.radius <= this.position.x + this.width &&
+            this.position.x <= enemy.position.x + enemy.radius &&
+            enemy.position.y + enemy.radius <= this.position.y + this.height &&
+            this.position.y <= enemy.position.y + enemy.radius) {
             this.hit = true;
             return true;
         } else {
