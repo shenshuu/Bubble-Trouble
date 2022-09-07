@@ -14,6 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const win = document.querySelector('.win-btn');
     const winScreen = document.querySelector('.win-modal');
     const spicyButton = document.querySelector('.spicy-btn');
+    const instructions = document.querySelector('#instructions-nav');
+
+    instructions.addEventListener('mouseover', () => {
+        startScreen.classList.remove('hidden');
+        start.classList.add('hidden');
+    });
+
+    instructions.addEventListener('mouseout', () => {
+        startScreen.classList.add('hidden');
+    });
 
     let interval;
 

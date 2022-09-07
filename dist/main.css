@@ -8,6 +8,7 @@
 
 body {
   background-color: rgb(31, 31, 31);
+  overflow: hidden;
 }
 
 .header {
@@ -118,8 +119,11 @@ body {
 
 .footer .author-note p {
   margin-top: 2%;
-  font-family: "Press Start 2P", cursive;
   color: white;
+}
+
+* {
+  font-family: "Press Start 2P", cursive;
 }
 
 #background {
@@ -131,10 +135,6 @@ body {
 
 canvas {
   position: absolute;
-}
-
-html, body {
-  overflow: hidden;
 }
 
 .modal, .restart-modal, .win-modal {
@@ -201,10 +201,24 @@ html, body {
 
 .left.toggled, .right.toggled, .up.toggled {
   transform: scale(1.2);
-  transition: 100ms;
+  transition: 120ms;
 }
 
 .start-btn.win-btn {
   display: flex;
   column-gap: 10px;
+}
+
+#instructions-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#instructions-nav:hover {
+  color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.03);
+  transition: 200ms;
+  cursor: pointer;
 }
