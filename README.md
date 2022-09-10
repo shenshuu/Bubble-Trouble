@@ -73,7 +73,7 @@ collided(enemy) {
 }
 ```
 
-One of the biggest challenges of this project was coming up with a way to allow the user to have exactly one projectile in the game state at a time. Through the use of null checks, I was able to incorporate the Singleton pattern for projectiles using null checks, effectively disabling the player from abusing the attack button. 
+One of the biggest challenges of this project was coming up with a way to allow the user to have exactly one projectile in the game state at a time. Through the use of null checks, I was able to incorporate the Singleton pattern for projectiles, effectively disabling the player from abusing the attack button. 
 ```js 
 if (game.player.missile && !game.player.missile.reseted) {
             game.player.missile.update();
